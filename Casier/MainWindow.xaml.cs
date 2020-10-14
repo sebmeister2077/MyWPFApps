@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.IO;
-using Microsoft.Win32;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Casier
 {
@@ -13,7 +14,8 @@ namespace Casier
         {
             InitializeComponent();
         }
-        FileStream fs;
+         private StreamReader fs;
+        private OpenFileDialog flName=new OpenFileDialog();
 
         private void btngenereaza_Click(object sender, RoutedEventArgs e)
         {
@@ -27,11 +29,12 @@ namespace Casier
               "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             dialog.InitialDirectory = "C:\\";
             dialog.Title = "Select a text file";
-            if (dialog.ShowDialog() == DialogResult.HasValue)
+            DialogResult res= dialog.ShowDialog();
+            if (res.ToString() == "OK" && !string.IsNullOrWhiteSpace(dialog.FileName))
             {
-                string fname = dialog.FileName;
+                btnalg.Content = "Alege alt fisier";
                 btngenereaza.IsEnabled = true;
-
+                flName.FileName = dialog.FileName;
             }
         }
 
@@ -39,7 +42,7 @@ namespace Casier
         {
             MessageBox.Show("Alegeti un fisier text care contine doar numere si spatii astfel incat:\n" +
                 "Pe primul rand sa fie Suma\n"+
-                "Pe urmatoarele 7 randuri cate 2 numere: tipul bancnotei si cate bancnote de acel tip exista.");
+                "Pe urmatoarele 7 randuri cate un numar: cate bancnote de acel tip exista(1,5,10,50,....).");
         }
     }
 }
