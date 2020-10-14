@@ -5,48 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Casier"
         mc:Ignorable="d"
-        Title="MainWindow" Height="609.51" Width="847.983">
+        Title="MainWindow" Height="600.51" Width="1117.983">
     <StackPanel Orientation="Vertical">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.8*"/>
-                <ColumnDefinition Width="2.2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="2.5*"/>
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="btnalg" Grid.Column="0" FontSize="17" Margin="20 10 20 10" Content="Alege fisierul" Click="btnalg_Click"/>
-            <Label x:Name="lblsuma" Grid.Column="1" FontSize="17" Margin="20 10 20 10" Content="Suma=-" HorizontalAlignment="Center"/>
+            <Label x:Name="lblsuma" Grid.Column="1" FontSize="17" Margin="44 10 45 10" Content="Suma=-" HorizontalAlignment="Center"/>
             <Button x:Name="btngenereaza" Grid.Column="2" FontSize="17" Margin="20 10 20 10" Content="Genereaza un mod de plata" Click="btngenereaza_Click" IsEnabled="False"/>
             <Button x:Name="btninfo" Grid.Column="3" FontSize="19" Margin="10 10 10 10" Content="?" Click="btninfo_Click" />
         </Grid>
-        <Grid Width="200" HorizontalAlignment="Left">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label x:Name="lbl1leu" Content="0 X" Grid.Column="0" Grid.Row="0" FontSize="18" VerticalAlignment="Center"/>
-            <Image Source="Images/un.jpg" Grid.Column="1" Grid.Row="0"/>
-            <Label x:Name="lbl5lei" Content="0 X" Grid.Column="0" Grid.Row="1" FontSize="18" VerticalAlignment="Center"/>
-            <Image Source="Images/cinci.jpg" Grid.Column="1" Grid.Row="1"/>
-            <Label x:Name="lbl10lei" Content="0 X" Grid.Column="0" Grid.Row="2" FontSize="18" VerticalAlignment="Center"/>
-            <Image Source="Images/zece.jpg" Grid.Column="1" Grid.Row="2"/>
-            <Label x:Name="lbl50lei" Content="0 X" Grid.Column="0" Grid.Row="3" FontSize="18" VerticalAlignment="Center"/>
-            <Image Source="Images/cincizeci.jpg" Grid.Column="1" Grid.Row="3"/>
-            <Label x:Name="lbl100lei" Content="0 X" Grid.Column="0" Grid.Row="4" FontSize="18" VerticalAlignment="Center"/>
-            <Image Source="Images/osuta.jpg" Grid.Column="1" Grid.Row="4"/>
-            <Label x:Name="lbl200lei" Content="0 X" Grid.Column="0" Grid.Row="5" FontSize="18" VerticalAlignment="Center"/>
-            <Image Source="Images/douasute.jpg" Grid.Column="1" Grid.Row="5"/>
-            <Label x:Name="lbl500lei" Content="0 X" Grid.Column="0" Grid.Row="6" FontSize="18" VerticalAlignment="Center"/>
-            <Image Source="Images/cincisute.jpg" Grid.Column="1" Grid.Row="6"/>
-        </Grid>
+        <StackPanel Orientation="Horizontal" x:Name="stack">
+            <Grid Width="200" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="lbl1leu" Content="0 X" Grid.Column="0" Grid.Row="0" FontSize="18" VerticalAlignment="Center"/>
+                <Image Source="Images/un.jpg" Grid.Column="1" Grid.Row="0"/>
+                <Label x:Name="lbl5lei" Content="0 X" Grid.Column="0" Grid.Row="1" FontSize="18" VerticalAlignment="Center"/>
+                <Image Source="Images/cinci.jpg" Grid.Column="1" Grid.Row="1"/>
+                <Label x:Name="lbl10lei" Content="0 X" Grid.Column="0" Grid.Row="2" FontSize="18" VerticalAlignment="Center"/>
+                <Image Source="Images/zece.jpg" Grid.Column="1" Grid.Row="2"/>
+                <Label x:Name="lbl50lei" Content="0 X" Grid.Column="0" Grid.Row="3" FontSize="18" VerticalAlignment="Center"/>
+                <Image Source="Images/cincizeci.jpg" Grid.Column="1" Grid.Row="3"/>
+                <Label x:Name="lbl100lei" Content="0 X" Grid.Column="0" Grid.Row="4" FontSize="18" VerticalAlignment="Center"/>
+                <Image Source="Images/osuta.jpg" Grid.Column="1" Grid.Row="4"/>
+                <Label x:Name="lbl200lei" Content="0 X" Grid.Column="0" Grid.Row="5" FontSize="18" VerticalAlignment="Center"/>
+                <Image Source="Images/douasute.jpg" Grid.Column="1" Grid.Row="5"/>
+                <Label x:Name="lbl500lei" Content="0 X" Grid.Column="0" Grid.Row="6" FontSize="18" VerticalAlignment="Center"/>
+                <Image Source="Images/cincisute.jpg" Grid.Column="1" Grid.Row="6"/>
+            </Grid>
+            <Label Content="lsafdsad" Visibility="Hidden"/>
+            <StackPanel x:Name="stack1" Orientation="Vertical">
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </Window>
