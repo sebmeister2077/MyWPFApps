@@ -1,0 +1,14 @@
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\bin\Debug\Casier.exe.config
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\bin\Debug\Casier.exe
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\bin\Debug\Casier.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\Casier.csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\MainWindow.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\App.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\Casier_MarkupCompile.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\Casier_MarkupCompile.lref
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\MainWindow.baml
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\Casier.g.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\Casier.Properties.Resources.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\Casier.csproj.GenerateResource.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\Casier.exe
+C:\Users\Sebas\source\repos\MyWpfApps\Casier\obj\Debug\Casier.pdb
