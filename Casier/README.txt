@@ -2,4 +2,4 @@
 
 
 
-Made in about 8 hours of work(2 days).
+Made in about 6-7 hours of work(2 days).
