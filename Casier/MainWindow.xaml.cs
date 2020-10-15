@@ -63,43 +63,53 @@ namespace Casier
             //Metoda Greedy
             int auxsum = suma;
             int i;
+            int catesunt = 0;//cate imagini vor fi
             for (i = 6; i >= 0; i--)
             {
                 while(auxsum >= ReturneazaBancnota(i)&&solutie[i]<bancnote[i])
                 {
                     solutie[i]++;
                     auxsum -= ReturneazaBancnota(i);
+                    catesunt++;
                 }
             }
             if(auxsum>0)
             {
                 MessageBox.Show("va lipsesc " + auxsum + " lei pentru a plati suma respectiva");
             }
-            int catesunt = 0;
-            for(i = 6;i>=0;i--)
+            int s = 0;
+            i = 6;
+            while (true)
             {
-                while (solutie[i]>0)
+                //de fiecare se creaza un nou stackpanel
+                StackPanel auxstack = new StackPanel();
+                auxstack.Orientation = System.Windows.Controls.Orientation.Vertical;
+                stack.Children.Add(auxstack);
+                for (; i >= 0; i--)
                 {
-                    var bitmapImage = new BitmapImage();
-                    bitmapImage.BeginInit();
-                    bitmapImage.UriSource = new Uri(GetPath(i), UriKind.Relative);
-                    bitmapImage.EndInit();
-                    Image img = new Image();
-                    img.Source = bitmapImage;
-                    img.Width = 200;
-                    img.Height = 100;
-                    Thickness marg = img.Margin;
-                    marg.Left = 10;
-                    marg.Top = 5;
-                    marg.Bottom = 5;
-                    img.Margin = marg;
-                    img.Height = 60;
-                    img.Width = 120;
-                    #region Add Image to Children
-                    //TODO adaugarea unui scroll bar spre dreapta
+                    while (solutie[i]>0)
+                    {
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.UriSource = new Uri(GetPath(i), UriKind.Relative);
+                        bitmapImage.EndInit();
+                        Image img = new Image();
+                        img.Source = bitmapImage;
+                        img.Width = 200;
+                        img.Height = 100;
+                        Thickness marg = img.Margin;
+                        marg.Left = 10;
+                        marg.Top = 5;
+                        marg.Bottom = 5;
+                        img.Margin = marg;
+                        img.Height = 60;
+                        img.Width = 120;
+                        #region Add Image to Children
+                        //TODO adaugarea unui scroll bar spre dreapta
 
-                    //TODO folosirea pointerelor pentru a sterge Switch-case si pentru a se putea pune infinit(evident ca nu atat) de controale stackpanel
-                    switch (catesunt/7+1)
+                        #region Old Switch case
+                        /*
+                        switch (catesunt/7+1)
                     {
                         //pe 1 coloana
                         case 1:
@@ -178,11 +188,20 @@ namespace Casier
                             stack9.Children.Add(img);
                             break;
                     }
-                    #endregion
-                    catesunt++;
-                    //MessageBox.Show(i.ToString());
-                    solutie[i]--;
+                    */
+                        #endregion
+                        auxstack.Children.Add(img);
+                        #endregion
+                        solutie[i]--;
+                        s++;
+                        if (s > 0 && s % 7 == 0)
+                            break;
+                    }
+                    if (s > 0 && s % 7 == 0)
+                        break;
                 }
+                if (s == catesunt)
+                    break;
             }
 
             //MessageBox.Show("Gata Cica");
