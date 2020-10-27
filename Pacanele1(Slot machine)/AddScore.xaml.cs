@@ -22,8 +22,6 @@ namespace Pacanele1_Slot_machine_
         {
             if (confirm.Content == "OK")
             {
-                MainWindow window = new MainWindow();
-                window.Show();
                 this.Close();
             }
             else

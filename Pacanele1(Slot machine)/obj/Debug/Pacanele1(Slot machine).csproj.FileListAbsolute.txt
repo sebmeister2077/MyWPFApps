@@ -21,3 +21,26 @@ C:\Users\Sebas\source\repos\Pacanele1(Slot machine)\obj\Debug\AddScore.baml
 C:\Users\Sebas\source\repos\Pacanele1(Slot machine)\obj\Debug\Pacanele1(Slot machine).csproj.CopyComplete
 C:\Users\Sebas\source\repos\Pacanele1(Slot machine)\bin\Debug\PlayerData.dll
 C:\Users\Sebas\source\repos\Pacanele1(Slot machine)\bin\Debug\PlayerData.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\bin\Debug\Pacanele1(Slot machine).exe.config
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\bin\Debug\Pacanele1(Slot machine).exe
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\bin\Debug\Pacanele1(Slot machine).pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\bin\Debug\PlayerData.dll
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\bin\Debug\PlayerData.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Pacanele1(Slot machine).csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\AddScore.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Hooray.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\MainWindow.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Rewards.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\App.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Pacanele1(Slot machine)_MarkupCompile.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Pacanele1(Slot machine)_MarkupCompile.lref
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\AddScore.baml
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Hooray.baml
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\MainWindow.baml
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Rewards.baml
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Pacanele1(Slot machine).g.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Pacanele1_Slot_machine_.Properties.Resources.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Pacanele1(Slot machine).csproj.GenerateResource.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Pacanele1(Slot machine).csproj.CopyComplete
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Pacanele1(Slot machine).exe
+C:\Users\Sebas\source\repos\MyWpfApps\Pacanele1(Slot machine)\obj\Debug\Pacanele1(Slot machine).pdb

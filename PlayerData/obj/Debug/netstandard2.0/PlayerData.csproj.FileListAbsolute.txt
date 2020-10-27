@@ -5,3 +5,11 @@ C:\Users\Sebas\source\repos\PlayerData\obj\Debug\netstandard2.0\PlayerData.Assem
 C:\Users\Sebas\source\repos\PlayerData\obj\Debug\netstandard2.0\PlayerData.AssemblyInfo.cs
 C:\Users\Sebas\source\repos\PlayerData\obj\Debug\netstandard2.0\PlayerData.dll
 C:\Users\Sebas\source\repos\PlayerData\obj\Debug\netstandard2.0\PlayerData.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\PlayerData\bin\Debug\netstandard2.0\PlayerData.deps.json
+C:\Users\Sebas\source\repos\MyWpfApps\PlayerData\bin\Debug\netstandard2.0\PlayerData.dll
+C:\Users\Sebas\source\repos\MyWpfApps\PlayerData\bin\Debug\netstandard2.0\PlayerData.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\PlayerData\obj\Debug\netstandard2.0\PlayerData.csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\MyWpfApps\PlayerData\obj\Debug\netstandard2.0\PlayerData.AssemblyInfoInputs.cache
+C:\Users\Sebas\source\repos\MyWpfApps\PlayerData\obj\Debug\netstandard2.0\PlayerData.AssemblyInfo.cs
+C:\Users\Sebas\source\repos\MyWpfApps\PlayerData\obj\Debug\netstandard2.0\PlayerData.dll
+C:\Users\Sebas\source\repos\MyWpfApps\PlayerData\obj\Debug\netstandard2.0\PlayerData.pdb
