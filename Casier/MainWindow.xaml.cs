@@ -22,12 +22,12 @@ namespace Casier
         private int[] bancnote=new int[7];
         private int suma;
         private int[] solutie = new int[7];
-        StackPanel stack2, stack3, stack4, stack5, stack6, stack7,stack8,stack9;
-
+        //StackPanel stack2, stack3, stack4, stack5, stack6, stack7,stack8,stack9;
 
 
         private int ReturneazaBancnota(int i)
         {
+            //returneaza valoarei bancnotei[i] (pt i=2 bancnota[2]=10 lei)
             switch (i)
             {
                 case 0: return 1;
@@ -44,6 +44,7 @@ namespace Casier
 
         private string GetPath(int i)
         {
+            //Returneaza path-ul imaginii bancnotei corespunzatoare
             switch (i)
             {
                 case 0: return "Images/un.jpg";
@@ -77,37 +78,39 @@ namespace Casier
             {
                 MessageBox.Show("va lipsesc " + auxsum + " lei pentru a plati suma respectiva");
             }
-            int s = 0;
-            i = 6;
-            while (true)
+            else
             {
-                //de fiecare se creaza un nou stackpanel
-                StackPanel auxstack = new StackPanel();
-                auxstack.Orientation = System.Windows.Controls.Orientation.Vertical;
-                stack.Children.Add(auxstack);
-                for (; i >= 0; i--)
+                int s = 0;
+                i = 6;
+                while (true)
                 {
-                    while (solutie[i]>0)
+                    //de fiecare se creaza un nou stackpanel
+                    StackPanel auxstack = new StackPanel();
+                    auxstack.Orientation = System.Windows.Controls.Orientation.Vertical;
+                    stack.Children.Add(auxstack);
+                    for (; i >= 0; i--)
                     {
-                        var bitmapImage = new BitmapImage();
-                        bitmapImage.BeginInit();
-                        bitmapImage.UriSource = new Uri(GetPath(i), UriKind.Relative);
-                        bitmapImage.EndInit();
-                        Image img = new Image();
-                        img.Source = bitmapImage;
-                        img.Width = 200;
-                        img.Height = 100;
-                        Thickness marg = img.Margin;
-                        marg.Left = 10;
-                        marg.Top = 5;
-                        marg.Bottom = 5;
-                        img.Margin = marg;
-                        img.Height = 60;
-                        img.Width = 120;
-                        #region Add Image to Children
-                        //TODO adaugarea unui scroll bar spre dreapta
+                        while (solutie[i]>0)
+                        {
+                            var bitmapImage = new BitmapImage();
+                            bitmapImage.BeginInit();
+                            bitmapImage.UriSource = new Uri(GetPath(i), UriKind.Relative);
+                            bitmapImage.EndInit();
+                            Image img = new Image();
+                            img.Source = bitmapImage;
+                            img.Width = 200;
+                            img.Height = 100;
+                            Thickness marg = img.Margin;
+                            marg.Left = 10;
+                            marg.Top = 5;
+                            marg.Bottom = 5;
+                            img.Margin = marg;
+                            img.Height = 60;
+                            img.Width = 120;
+                            #region Add Image to Children
+                            //TODO adaugarea unui scroll bar spre dreapta
 
-                        #region Old Switch case
+                            #region Old Switch case
                         /*
                         switch (catesunt/7+1)
                     {
@@ -190,26 +193,28 @@ namespace Casier
                     }
                     */
                         #endregion
-                        auxstack.Children.Add(img);
-                        #endregion
-                        solutie[i]--;
-                        s++;
+                            auxstack.Children.Add(img);
+                            #endregion
+                            solutie[i]--;
+                            s++;
+                            if (s > 0 && s % 7 == 0)
+                                break;
+                        }
                         if (s > 0 && s % 7 == 0)
                             break;
                     }
-                    if (s > 0 && s % 7 == 0)
+                    if (s == catesunt)
                         break;
                 }
-                if (s == catesunt)
-                    break;
             }
-
             //MessageBox.Show("Gata Cica");
         }
 
 
         private void PunePeLbl(int i)
         {
+            //Scrie in UI cate bancnotei de tipul [i] sunt
+
             switch(i)
             {
                 case 0:
@@ -283,5 +288,6 @@ namespace Casier
                 "Pe urmatoarele 7 randuri cate un numar: cate bancnote de acel tip exista(1,5,10,50,....).");
             
         }
+
     }
 }

@@ -1,0 +1,8 @@
+C:\Users\Sebas\source\repos\PersonData\obj\Debug\netstandard2.0\PersonData.csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\PersonData\obj\Debug\netstandard2.0\PersonData.AssemblyInfoInputs.cache
+C:\Users\Sebas\source\repos\PersonData\obj\Debug\netstandard2.0\PersonData.AssemblyInfo.cs
+C:\Users\Sebas\source\repos\PersonData\bin\Debug\netstandard2.0\PersonData.deps.json
+C:\Users\Sebas\source\repos\PersonData\bin\Debug\netstandard2.0\PersonData.dll
+C:\Users\Sebas\source\repos\PersonData\bin\Debug\netstandard2.0\PersonData.pdb
+C:\Users\Sebas\source\repos\PersonData\obj\Debug\netstandard2.0\PersonData.dll
+C:\Users\Sebas\source\repos\PersonData\obj\Debug\netstandard2.0\PersonData.pdb

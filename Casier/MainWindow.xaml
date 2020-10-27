@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Casier"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600.51" Width="1117.983">
+        Title="MainWindow" Height="641.01" Width="1164.483">
     <StackPanel Orientation="Vertical">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -50,8 +50,6 @@
                 <Image Source="Images/cincisute.jpg" Grid.Column="1" Grid.Row="6"/>
             </Grid>
             <Label Content="lsafdsad" Visibility="Hidden"/>
-            <StackPanel x:Name="stack1" Orientation="Vertical">
-            </StackPanel>
         </StackPanel>
     </StackPanel>
 </Window>
