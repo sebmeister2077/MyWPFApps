@@ -1,6 +1,6 @@
 ﻿namespace Cerc_WinForms
 {
-    partial class Form1
+    partial class Mainwindow
     {
         /// <summary>
         /// Required designer variable.
@@ -138,7 +138,7 @@
             // trackBar2
             // 
             this.trackBar2.Location = new System.Drawing.Point(850, 58);
-            this.trackBar2.Maximum = 50;
+            this.trackBar2.Maximum = 0;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar2.Size = new System.Drawing.Size(45, 646);
@@ -176,7 +176,7 @@
             this.btnnext.UseVisualStyleBackColor = true;
             this.btnnext.Click += new System.EventHandler(this.btnnext_Click);
             // 
-            // Form1
+            // Mainwindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -194,8 +194,8 @@
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Mainwindow";
+            this.Text = "MainWindow";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

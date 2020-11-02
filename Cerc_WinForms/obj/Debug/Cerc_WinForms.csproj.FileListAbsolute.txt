@@ -2,7 +2,6 @@ C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\Cerc_WinForms.exe.
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\Cerc_WinForms.exe
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\Cerc_WinForms.pdb
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.csprojAssemblyReference.cache
-C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.Form1.resources
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.Properties.Resources.resources
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.csproj.GenerateResource.cache
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.exe
@@ -14,3 +13,4 @@ C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\System.Drawing.Com
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\ProjectViewModel.pdb
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\ProjectData.pdb
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.csproj.CopyComplete
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.Mainwindow.resources

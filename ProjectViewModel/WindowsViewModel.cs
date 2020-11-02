@@ -11,7 +11,7 @@ namespace ProjectViewModel
         private static Pen myPen = Pens.Black;
         private static int width, height;
         private static float MutaPeCerc = 0, MutaPeRaza = 0;
-
+        private static int layers = 0, distance = 0;
         public static void SetLengths(int w,int h)
         {
             width = w;
@@ -30,6 +30,11 @@ namespace ProjectViewModel
             if (MutaPeRaza >= (width + height) / 1.8)
                 MutaPeRaza = 0;
         }
+        public static void SetLayer(int l=0,int d=0)
+        {
+            layers = l;
+            distance = d;
+        }
         public static void ResetMuta(bool b1=false,bool b2=false)
         {
             if (b1 == true)
@@ -45,7 +50,12 @@ namespace ProjectViewModel
 
             Punct[] v = new Punct[n];
             for (int i = 0; i < n; i++)
-                v[i] = new Punct(i, n,MutaPeCerc,MutaPeRaza);
+            {
+                if(layers==0)
+                v[i] = new Punct(i, n, MutaPeCerc, MutaPeRaza);
+                else
+                v[i] = new Punct(i, n, MutaPeCerc, layers, distance); 
+            }
             for (int i = 0; i < n; i++)
                 grp.DrawEllipse(Pens.Blue, v[i].x, v[i].y, 2, 2);
 
