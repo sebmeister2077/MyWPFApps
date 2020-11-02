@@ -7,3 +7,10 @@ C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.Prop
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.csproj.GenerateResource.cache
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.exe
 C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.MultipleLayers.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\ProjectData.dll
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\ProjectViewModel.dll
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\System.Drawing.Common.dll
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\ProjectViewModel.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\bin\Debug\ProjectData.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\obj\Debug\Cerc_WinForms.csproj.CopyComplete

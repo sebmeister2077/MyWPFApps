@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cerc_WinForms", "Cerc_WinForms.csproj", "{E569F93E-4A37-41EB-8660-15B23965BFD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectData", "ProjectData\ProjectData.csproj", "{6FDB074E-7252-4223-8437-6F67D752578C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectViewModel", "..\ProjectViewModel\ProjectViewModel.csproj", "{720BD614-6134-422A-BEBC-902CA724B348}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{E569F93E-4A37-41EB-8660-15B23965BFD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E569F93E-4A37-41EB-8660-15B23965BFD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E569F93E-4A37-41EB-8660-15B23965BFD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FDB074E-7252-4223-8437-6F67D752578C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FDB074E-7252-4223-8437-6F67D752578C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FDB074E-7252-4223-8437-6F67D752578C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FDB074E-7252-4223-8437-6F67D752578C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{720BD614-6134-422A-BEBC-902CA724B348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{720BD614-6134-422A-BEBC-902CA724B348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{720BD614-6134-422A-BEBC-902CA724B348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{720BD614-6134-422A-BEBC-902CA724B348}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
