@@ -93,13 +93,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectViewModel\ProjectViewModel.csproj">
-      <Project>{720bd614-6134-422a-bebc-902ca724b348}</Project>
-      <Name>ProjectViewModel</Name>
-    </ProjectReference>
     <ProjectReference Include="ProjectData\ProjectData.csproj">
       <Project>{6fdb074e-7252-4223-8437-6f67d752578c}</Project>
       <Name>ProjectData</Name>
+    </ProjectReference>
+    <ProjectReference Include="ProjectViewModel\ProjectViewModel.csproj">
+      <Project>{57d339f1-88b2-4b37-aa2c-64b63ee1debb}</Project>
+      <Name>ProjectViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

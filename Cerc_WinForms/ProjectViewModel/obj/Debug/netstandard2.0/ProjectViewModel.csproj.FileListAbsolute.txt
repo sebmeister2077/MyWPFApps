@@ -1,0 +1,11 @@
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\bin\Debug\netstandard2.0\ProjectViewModel.deps.json
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\bin\Debug\netstandard2.0\ProjectViewModel.dll
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\bin\Debug\netstandard2.0\ProjectViewModel.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\bin\Debug\netstandard2.0\ProjectData.dll
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\bin\Debug\netstandard2.0\ProjectData.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\obj\Debug\netstandard2.0\ProjectViewModel.csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\obj\Debug\netstandard2.0\ProjectViewModel.AssemblyInfoInputs.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\obj\Debug\netstandard2.0\ProjectViewModel.AssemblyInfo.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\obj\Debug\netstandard2.0\ProjectViewModel.csproj.CopyComplete
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\obj\Debug\netstandard2.0\ProjectViewModel.dll
+C:\Users\Sebas\source\repos\MyWpfApps\Cerc_WinForms\ProjectViewModel\obj\Debug\netstandard2.0\ProjectViewModel.pdb
