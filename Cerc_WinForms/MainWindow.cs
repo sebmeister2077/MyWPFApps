@@ -17,7 +17,7 @@ namespace Cerc_WinForms
         {
             label1.Text = "Nr Puncte=" + trackBar1.Value;
             if (trackBar1.Value <= trackBar2.Value)
-                MessageBox.Show("Nu se pot trage mai multe linii decat uncte existante!");
+                MessageBox.Show("Nu se pot trage mai multe linii decat puncte existante!");
             else
                 pictureBox1.Image = WindowsViewModel. Deseneaza(trackBar1.Value, trackBar2.Value);
             trackBar2.Maximum = (int)Math.Floor((decimal)trackBar1.Value / 2);

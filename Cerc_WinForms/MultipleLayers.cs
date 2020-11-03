@@ -51,6 +51,7 @@ namespace Cerc_WinForms
 
         private void MultipleLayers_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if(!parent.Enabled)
             parent.Show();
         }
 
