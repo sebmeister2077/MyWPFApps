@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sebas\\source\\repos\\MyWpfApps\\PlayerData\\PlayerData.csproj": {}
+    "C:\\Users\\Sebas\\Source\\Repos\\MyWpfApps\\PlayerData\\PlayerData.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sebas\\source\\repos\\MyWpfApps\\PlayerData\\PlayerData.csproj": {
+    "C:\\Users\\Sebas\\Source\\Repos\\MyWpfApps\\PlayerData\\PlayerData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sebas\\source\\repos\\MyWpfApps\\PlayerData\\PlayerData.csproj",
+        "projectUniqueName": "C:\\Users\\Sebas\\Source\\Repos\\MyWpfApps\\PlayerData\\PlayerData.csproj",
         "projectName": "PlayerData",
-        "projectPath": "C:\\Users\\Sebas\\source\\repos\\MyWpfApps\\PlayerData\\PlayerData.csproj",
+        "projectPath": "C:\\Users\\Sebas\\Source\\Repos\\MyWpfApps\\PlayerData\\PlayerData.csproj",
         "packagesPath": "C:\\Users\\Sebas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sebas\\source\\repos\\MyWpfApps\\PlayerData\\obj\\",
+        "outputPath": "C:\\Users\\Sebas\\Source\\Repos\\MyWpfApps\\PlayerData\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sebas\\AppData\\Roaming\\NuGet\\NuGet.Config",

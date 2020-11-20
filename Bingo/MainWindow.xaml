@@ -1,0 +1,16 @@
+﻿<Window x:Class="Bingo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bingo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="217.402" Width="272.858" ResizeMode="NoResize">
+    <Grid Margin="0,0,4,6">
+        <Label Content="How many players?
+               " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,25,0,0" Height="39" Width="151" FontSize="16"/>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="59" Margin="182,35,0,0" Height="29"/>
+        <Button Content="Start game" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Margin="53,103,0,0" Height="54" FontSize="18"/>
+
+    </Grid>
+</Window>

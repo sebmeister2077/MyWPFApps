@@ -1,0 +1,14 @@
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\bin\Debug\Bingo.exe.config
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\bin\Debug\Bingo.exe
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\bin\Debug\Bingo.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\MainWindow.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\App.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo_MarkupCompile.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo_MarkupCompile.lref
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\MainWindow.baml
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.g.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.Properties.Resources.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.csproj.GenerateResource.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.exe
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.pdb
