@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Sebas\source\repos\MyWpfApps\Bingo\App.xaml
-11151548125
+3-1629785751
 
-5-2017746502
+72032186298
 13-1505183044
-MainWindow.xaml;
+BingoControl.xaml;MainWindow.xaml;PlayerWindow.xaml;
 
 False
 

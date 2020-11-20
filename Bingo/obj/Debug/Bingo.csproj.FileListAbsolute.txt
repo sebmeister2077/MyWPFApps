@@ -12,3 +12,7 @@ C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.Properties.Resources
 C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.csproj.GenerateResource.cache
 C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.exe
 C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\Bingo.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\BingoControl.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\PlayerWindow.g.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\BingoControl.baml
+C:\Users\Sebas\source\repos\MyWpfApps\Bingo\obj\Debug\PlayerWindow.baml

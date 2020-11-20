@@ -20,9 +20,19 @@ namespace Bingo
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+       public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (playerCount.SelectedIndex>=0)
+            {
+                var newWindow = new BingoControl(playerCount.SelectedIndex);
+                newWindow.Show();
+                this.Close();
+            }
         }
     }
 }
