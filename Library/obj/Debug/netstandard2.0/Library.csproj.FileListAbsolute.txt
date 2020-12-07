@@ -1,0 +1,8 @@
+C:\Users\Sebas\source\repos\MyWpfApps\Library\bin\Debug\netstandard2.0\Library.deps.json
+C:\Users\Sebas\source\repos\MyWpfApps\Library\bin\Debug\netstandard2.0\Library.dll
+C:\Users\Sebas\source\repos\MyWpfApps\Library\bin\Debug\netstandard2.0\Library.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Library\obj\Debug\netstandard2.0\Library.csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Library\obj\Debug\netstandard2.0\Library.AssemblyInfoInputs.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Library\obj\Debug\netstandard2.0\Library.AssemblyInfo.cs
+C:\Users\Sebas\source\repos\MyWpfApps\Library\obj\Debug\netstandard2.0\Library.dll
+C:\Users\Sebas\source\repos\MyWpfApps\Library\obj\Debug\netstandard2.0\Library.pdb

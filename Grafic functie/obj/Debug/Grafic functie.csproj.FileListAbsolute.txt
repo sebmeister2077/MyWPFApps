@@ -1,0 +1,17 @@
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\bin\Debug\Grafic functie.exe.config
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\bin\Debug\Grafic functie.exe
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\bin\Debug\Grafic functie.pdb
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\bin\Debug\Library.dll
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\bin\Debug\Library.pdb
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\Grafic functie.csprojAssemblyReference.cache
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\MainWindow.g.cs
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\App.g.cs
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\Grafic functie_MarkupCompile.cache
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\Grafic functie_MarkupCompile.lref
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\MainWindow.baml
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\Grafic functie.g.resources
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\Grafic_functie.Properties.Resources.resources
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\Grafic functie.csproj.GenerateResource.cache
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\Grafic functie.csproj.CopyComplete
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\Grafic functie.exe
+C:\Users\Sebas\Source\Repos\MyWpfApps\Grafic functie\obj\Debug\Grafic functie.pdb

@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grafic_functie"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="659.413" Width="818.913" Background="#FFA07B7B">
+    <Grid Background="#FFF1F1F1">
+        <TextBox x:Name="txtboxexpr" HorizontalAlignment="Left" Height="207" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Margin="638,33,0,0" Text="sin(x)" FontSize="20"/>
+        <Button Content="Desenaza" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="674,260,0,0" FontSize="16" Height="32" Click="Button_Click"/>
+        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="600" Background="White" Margin="10,10,0,0"/>
+        <Button x:Name="btnfourier" Content="Create Fourier Series" HorizontalAlignment="Left" VerticalAlignment="Top" Width="163" Margin="638,321,0,0" Height="39" FontSize="16" Click="btnfourier_Click"/>
+        <ListBox x:Name="lstbx" HorizontalAlignment="Left" Height="62" VerticalAlignment="Top" Width="100" Margin="674,380,0,0">
+            <ListBoxItem x:Name="n10" Content="1"/>
+            <ListBoxItem x:Name="n30" Content="2"/>
+            <ListBoxItem x:Name="n50" Content="3"/>
+            <ListBoxItem x:Name="n70" Content="4"/>
+            <ListBoxItem x:Name="n90" Content="5"/>
+        </ListBox>
     </Grid>
 </Window>
