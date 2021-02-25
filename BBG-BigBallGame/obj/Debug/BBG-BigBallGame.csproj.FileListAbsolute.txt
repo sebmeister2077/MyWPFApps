@@ -1,0 +1,9 @@
+C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\bin\Debug\BBG-BigBallGame.exe.config
+C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\bin\Debug\BBG-BigBallGame.exe
+C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\bin\Debug\BBG-BigBallGame.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG-BigBallGame.csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG_BigBallGame.BBG.resources
+C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG_BigBallGame.Properties.Resources.resources
+C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG-BigBallGame.csproj.GenerateResource.cache
+C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG-BigBallGame.exe
+C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG-BigBallGame.pdb

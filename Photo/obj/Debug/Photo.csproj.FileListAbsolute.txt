@@ -1,0 +1,9 @@
+C:\Users\Sebas\Source\Repos\MyWpfApps\Photo\bin\Debug\Photo.exe.config
+C:\Users\Sebas\Source\Repos\MyWpfApps\Photo\bin\Debug\Photo.exe
+C:\Users\Sebas\Source\Repos\MyWpfApps\Photo\bin\Debug\Photo.pdb
+C:\Users\Sebas\Source\Repos\MyWpfApps\Photo\obj\Debug\Photo.csprojAssemblyReference.cache
+C:\Users\Sebas\Source\Repos\MyWpfApps\Photo\obj\Debug\Photo.Form1.resources
+C:\Users\Sebas\Source\Repos\MyWpfApps\Photo\obj\Debug\Photo.Properties.Resources.resources
+C:\Users\Sebas\Source\Repos\MyWpfApps\Photo\obj\Debug\Photo.csproj.GenerateResource.cache
+C:\Users\Sebas\Source\Repos\MyWpfApps\Photo\obj\Debug\Photo.exe
+C:\Users\Sebas\Source\Repos\MyWpfApps\Photo\obj\Debug\Photo.pdb
