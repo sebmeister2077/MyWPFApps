@@ -6,13 +6,13 @@ namespace BBG_BigBallGame
     public class Ball
     {
         int id;
-        List<int> visitorlist=new List<int>();//colletion used to make only 1 collision Effect per collision Encounter(o singura atingere/coliziune),and not per collosion Time(slow speed/big radius==more time)
+        HashSet<int> visitorlist=new HashSet<int>();//colletion used to make only 1 collision Effect per collision Encounter(o singura atingere/coliziune),and not per collosion Time(slow speed/big radius==more time)
         double raza;
         Punct poz;
         Color col;
         double dirsens;//va fi un unghi cuprins intre 180 si -180* ,0* fiind directia stanga,90* directia jos(pt ca pt canvas sus ar fi jos)
         double viteza;//interval: [1,5]
-        string type;
+        string type="";
 
         #region Constructor
         public Ball()
@@ -27,8 +27,14 @@ namespace BBG_BigBallGame
             this.dirsens = dirsens;
             this.viteza = viteza;
         }
-        public Ball(double r, Punct p, Color c, double _dirsens, double _viteza, string _type) : this(r, p, c, _dirsens, _viteza)
-        { this.type = _type; }
+        public Ball(double r, Punct p, Color c, double dirsens, double viteza, string type) : this(r, p, c, dirsens, viteza)
+        { this.type = type; }
+        public Ball(Ball b):this(b.raza,b.poz,b.col,b.dirsens,b.viteza)
+        {
+            this.id = b.id;
+            if (b.type != "")
+                this.type = b.type;
+        }
         #endregion
         #region Properties
         public double Raza
@@ -81,17 +87,17 @@ namespace BBG_BigBallGame
         }
         #endregion
         #region Methods
-        public bool NotTouched()
-        {
-            return visitorlist.Count==0;//returneaza false daca a fosst in contact recent cu o anumita bila
-        }
         public bool Touched(int id)
         {
             return visitorlist.Contains(id);
         }
         public void RemoveVisitor(int id)
         {
-            visitorlist.Remove(id);//removes a ball from collection
+            visitorlist.Remove(id);//removes a past collision with ball.Id from history(collection)
+        }
+        public void ColorChange(double ratio,Color c)
+        {
+            this.col = Color.FromArgb(200, (byte)(col.R*(1 - ratio)+(c.R*ratio)), (byte)(col.G * (1 - ratio) + (c.G * ratio)), (byte)(col.B * (1 - ratio) + (c.B * ratio)));
         }
         #endregion
     }
