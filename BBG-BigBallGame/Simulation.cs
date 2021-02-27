@@ -20,61 +20,66 @@ namespace BBG_BigBallGame
         List<Ball> lista;
         Bitmap bmp;
         Graphics grp;
+        Stack<Ball> remove;
         public BBG()
         {
             InitializeComponent();
         }
         private void BBG_Load(object sender, EventArgs e)
         {
-            Initialize(20);//amount of balls as parameter
+            bmp = new Bitmap(1300, 800);
+            remove = new Stack<Ball>();
+            lista = new List<Ball>();
+            Initialize(20, new ushort[] { 6, 3, 1 }) ;//amount of balls as parameter
             Start();
         }
 
-        private void Initialize(int n)
+        private void Initialize(int n,ushort[] ratios)
         {
+            remove = new Stack<Ball>();
             lista = new List<Ball>();
-            bmp = new Bitmap(1300, 800);
             regular = 0;
             repelent = 0;
             monster = 0;
-            
             while (n-- > 0)
             {
                 Ball b = new Ball(n+1);
-                b.Raza = (5 - Math.Log((rnd.Next() % 20+2) * 3))*6+2;//higher chance for smaller balls spawning
+                b.Raza = (7 - Math.Log((rnd.Next() % 120+2) * 3))*6+10;//higher chance for smaller balls spawning
                 b.Position = new Punct(rnd.Next() % 1250 + 25, rnd.Next() % 750 + 25);
                 b.Color = Color.FromArgb(200,(byte)(rnd.Next() % 255), (byte)(rnd.Next() % 255), (byte)(rnd.Next() % 255));
                 b.Angle = rnd.Next() % 361 - 181;//interval: [-180,180]
                 b.Speed = (rnd.Next() % 5)*3 + 4;
-                int aux = rnd.Next() % 9;
-                if (aux == 0)
-                { b.Type = "MonBall"; b.Speed = 0;monster++; }// sanse: 1/9
+                int aux = rnd.Next() % (ratios[0]+ratios[1]+ratios[2]);
+                if (aux <ratios[2])
+                { b.Type = "MonBall"; b.Speed = 0;monster++;b.Raza = Math.Max(6, b.Raza / 4); }// sanse: 1/10  +raza mai mica
                 else
-                    if (aux < 4)
-                { b.Type = "RepBall"; repelent++; }//  3/9
+                    if (aux < ratios[2]+ratios[1])
+                { b.Type = "RepBall"; repelent++; }//  3/10
                 else
-                { b.Type = "RegBall"; regular++; }//   5/9
+                { b.Type = "RegBall"; regular++; }//   6/10
                 lista.Add(b);
             }
         }
         private void Start()
         {
             t = new Timer();
-            t.Interval = 30;
+            t.Interval = 160-trckbarSpeed.Value*15;
             t.Tick += T_Tick;
             t.Enabled = true;
         }
 
         private void T_Tick(object sender, EventArgs e)
         {
-            if (monster>0&&repelent==0&&regular==0||(monster==0&&regular==1))//TODO detectare cand nu se vor mai putea efectua coliziuni datorita Unghiurilor a 1 sau mai multor bile
+            if ((monster>0&&repelent==0&&regular==0)||(monster==0&&regular==1))//TODO detectare cand nu se vor mai putea efectua coliziuni datorita Unghiurilor a 1 sau mai multor bile
             { t.Stop(); MessageBox.Show("Simulare incheiata."); }
             else
             {
                 foreach (var bila in lista.ToList())
                 {
                     if (bila.Raza < 1)
-                    { lista.Remove(bila); repelent--; continue; }//numai bilele repelent se micsoreaza,restul Doar cresc,raman la fel sau dispar
+                    { bila.Id=0;remove.Push(bila); repelent--; continue; }//numai bilele repelent se micsoreaza,restul Doar cresc,raman la fel sau dispar
+                    if(bila.Id==0)
+                    { remove.Push(bila);continue; }//bila eliminata(mancata),doar bilele regular sunt mancate
                     double nextmove = Math.Sin(bila.Angle * PI / 180) * bila.Speed + bila.Y;
                     if (nextmove < 800 && nextmove > 0)
                         bila.Y = nextmove;
@@ -99,21 +104,25 @@ namespace BBG_BigBallGame
                     }
                     //s-a mutat pe urmatoarea pozitie
                     foreach (var bilaVecina in lista.ToList())
-                        if (bilaVecina.Id != bila.Id && Distanta(bila.Position, bilaVecina.Position) - bila.Raza - bilaVecina.Raza < 0)//se ating 2 bile 
-                        {
-                            if (!bila.Touched(bilaVecina.Id))//collision occurs if last Tick the 2 balls have not collided
-                                Collision(bila, bilaVecina);
-                            bila.Touched(bilaVecina.Id);
-                            bilaVecina.Touched(bila.Id);
-                        }
-                        else
-                            bila.RemoveVisitor(bilaVecina.Id);//resets the collision EVENT to Enabled
+                        if (bilaVecina.Id != 0)//in caz ca in unul din pasii treciti dar in acelasi tick bila aceasta a fost deja eliminta
+                            if (bilaVecina.Id != bila.Id && Distanta(bila.Position, bilaVecina.Position) - bila.Raza - bilaVecina.Raza < 0)//se ating 2 bile 
+                            {
+                                if (!bila.Touched(bilaVecina.Id))//collision occurs if last Tick the 2 balls have not collided
+                                    Collision(bila, bilaVecina);
+                                bila.Touched(bilaVecina.Id);
+                                bilaVecina.Touched(bila.Id);
+                            }
+                            else
+                                bila.RemoveVisitor(bilaVecina.Id);//resets the collision EVENT to Enabled
                     
                 }
             }
+            //Remove deleted balls from lista
+            while (remove.Count > 0)
+                lista.Remove(remove.Pop());
             //Update canvas
             grp = Graphics.FromImage(bmp);
-            grp.Clear(Color.White);
+            grp.Clear(Color.AntiqueWhite);
             foreach(var ball in lista)
             {
                 SolidBrush brush = new SolidBrush(ball.Color);
@@ -124,7 +133,6 @@ namespace BBG_BigBallGame
                 }
             }
             pictureBox1.Image = bmp;
-
         }
 
         private string Prescurtare(string type)
@@ -141,14 +149,36 @@ namespace BBG_BigBallGame
             return "";
         }
 
-        private bool Paralel()
+        private void trckbarSpeed_Scroll(object sender, EventArgs e)
         {
-            //TODO
-            //should determine if 1 or more balls are paralel to each other
-            return false;
+            t.Interval = 160-trckbarSpeed.Value * 15;
         }
 
-        public double Distanta(Punct p1,Punct p2)
+        private void btnreset_Click(object sender, EventArgs e)
+        {
+            t.Stop();
+            ushort balls;
+            if (ushort.TryParse(txbxballs.Text, out balls))
+            {
+                if (balls <= 0 || balls > 50)
+                { 
+                    balls = Math.Max((ushort)2, balls);
+                    balls = Math.Min((ushort)50, balls);
+                    txbxballs.Text = balls.ToString();
+                }
+                ushort ratReg, ratRep, ratMon;//ratios
+                if (!ushort.TryParse(txtratioReg.Text, out ratReg))
+                    return;
+                if (!ushort.TryParse(txtratioRep.Text, out ratRep))
+                    return;
+                if (!ushort.TryParse(txtratioMon.Text, out ratMon))
+                    return;
+                Initialize(balls,new ushort[] {ratReg,ratRep,ratMon});
+                Start();
+            }   
+        }
+
+        private double Distanta(Punct p1,Punct p2)
         {
             return Math.Sqrt((p2.X - p1.X) * (p2.X - p1.X) + (p2.Y - p1.Y) * (p2.Y - p1.Y));
         }
@@ -164,7 +194,8 @@ namespace BBG_BigBallGame
                 { blarge = b1; bsmall = b2; }
                 blarge.Raza += bsmall.Raza;
                 blarge.ColorChange(bsmall.Raza / (blarge.Raza + bsmall.Raza), bsmall.Color);
-                lista.Remove(bsmall);
+                bsmall.Id = 0;
+                remove.Push(bsmall);
                 regular--;
             }
             else//caz2
@@ -177,7 +208,8 @@ namespace BBG_BigBallGame
                 else
                 { rball = b2; mball = b1; }
                 mball.Raza += rball.Raza;
-                lista.Remove(rball);
+                rball.Id = 0;
+                remove.Push(rball);
                 regular--;
             }
             else//caz3

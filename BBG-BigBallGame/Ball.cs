@@ -6,13 +6,13 @@ namespace BBG_BigBallGame
     public class Ball
     {
         int id;
-        HashSet<int> visitorlist=new HashSet<int>();//colletion used to make only 1 collision Effect per collision Encounter(o singura atingere/coliziune),and not per collosion Time(slow speed/big radius==more time)
+        HashSet<int> visitorlist = new HashSet<int>();//colletion used to make only 1 collision Effect per collision Encounter(o singura atingere/coliziune),and not per collosion Time(slow speed/big radius==more time)
         double raza;
         Punct poz;
         Color col;
         double dirsens;//va fi un unghi cuprins intre 180 si -180* ,0* fiind directia stanga,90* directia jos(pt ca pt canvas sus ar fi jos)
         double viteza;//interval: [1,5]
-        string type="";
+        string type = "";
 
         #region Constructor
         public Ball()
@@ -29,7 +29,7 @@ namespace BBG_BigBallGame
         }
         public Ball(double r, Punct p, Color c, double dirsens, double viteza, string type) : this(r, p, c, dirsens, viteza)
         { this.type = type; }
-        public Ball(Ball b):this(b.raza,b.poz,b.col,b.dirsens,b.viteza)
+        public Ball(Ball b) : this(b.raza, b.poz, b.col, b.dirsens, b.viteza)
         {
             this.id = b.id;
             if (b.type != "")
@@ -40,9 +40,9 @@ namespace BBG_BigBallGame
         public double Raza
         {
             get
-            { return raza;}
+            { return raza; }
             set
-            {  raza = value;}
+            { raza = value; }
         }
         public Punct Position
         {
@@ -84,6 +84,7 @@ namespace BBG_BigBallGame
         public int Id
         {
             get { return id; }
+            set { id = value; }
         }
         #endregion
         #region Methods
@@ -95,9 +96,9 @@ namespace BBG_BigBallGame
         {
             visitorlist.Remove(id);//removes a past collision with ball.Id from history(collection)
         }
-        public void ColorChange(double ratio,Color c)
+        public void ColorChange(double ratio, Color c)
         {
-            this.col = Color.FromArgb(200, (byte)(col.R*(1 - ratio)+(c.R*ratio)), (byte)(col.G * (1 - ratio) + (c.G * ratio)), (byte)(col.B * (1 - ratio) + (c.B * ratio)));
+            this.col = Color.FromArgb(200, (byte)(col.R * (1 - ratio) + (c.R * ratio)), (byte)(col.G * (1 - ratio) + (c.G * ratio)), (byte)(col.B * (1 - ratio) + (c.B * ratio)));
         }
         #endregion
     }
