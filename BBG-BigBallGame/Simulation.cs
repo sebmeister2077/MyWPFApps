@@ -26,7 +26,7 @@ namespace BBG_BigBallGame
         }
         private void BBG_Load(object sender, EventArgs e)
         {
-            Initialize(15);//amount of balls as parameter
+            Initialize(20);//amount of balls as parameter
             Start();
         }
 
@@ -37,6 +37,7 @@ namespace BBG_BigBallGame
             regular = 0;
             repelent = 0;
             monster = 0;
+            
             while (n-- > 0)
             {
                 Ball b = new Ball(n+1);
@@ -47,7 +48,7 @@ namespace BBG_BigBallGame
                 b.Speed = (rnd.Next() % 5)*3 + 4;
                 int aux = rnd.Next() % 9;
                 if (aux == 0)
-                    b.Type = "MonBall";// sanse: 1/9
+                { b.Type = "MonBall"; b.Speed = 0;monster++; }// sanse: 1/9
                 else
                     if (aux < 4)
                 { b.Type = "RepBall"; repelent++; }//  3/9
@@ -59,21 +60,21 @@ namespace BBG_BigBallGame
         private void Start()
         {
             t = new Timer();
-            t.Interval = 200;
+            t.Interval = 30;
             t.Tick += T_Tick;
             t.Enabled = true;
         }
 
         private void T_Tick(object sender, EventArgs e)
         {
-            if (regular<=1)
+            if (monster>0&&repelent==0&&regular==0||(monster==0&&regular==1))//TODO detectare cand nu se vor mai putea efectua coliziuni datorita Unghiurilor a 1 sau mai multor bile
             { t.Stop(); MessageBox.Show("Simulare incheiata."); }
             else
             {
                 foreach (var bila in lista.ToList())
                 {
                     if (bila.Raza < 1)
-                    { lista.Remove(bila); continue; }
+                    { lista.Remove(bila); repelent--; continue; }//numai bilele repelent se micsoreaza,restul Doar cresc,raman la fel sau dispar
                     double nextmove = Math.Sin(bila.Angle * PI / 180) * bila.Speed + bila.Y;
                     if (nextmove < 800 && nextmove > 0)
                         bila.Y = nextmove;
@@ -87,14 +88,14 @@ namespace BBG_BigBallGame
                     }
                     nextmove = Math.Cos(bila.Angle * PI / 180) * bila.Speed + bila.X;
                     if (nextmove < 1300 && nextmove > 0)
-                        bila.Y = nextmove;
+                        bila.X = nextmove;
                     else
                     {
                         bila.Angle =(bila.Angle<0?-180:180)-bila.Angle;
                         if (nextmove >= 1300)
-                            bila.Y = 1300 - Math.Abs(nextmove - 1300);
+                            bila.X = 1300 - Math.Abs(nextmove - 1300);
                         else
-                            bila.Y = -nextmove;
+                            bila.X = -nextmove;
                     }
                     //s-a mutat pe urmatoarea pozitie
                     foreach (var bilaVecina in lista.ToList())
@@ -153,8 +154,6 @@ namespace BBG_BigBallGame
         }
         private void Collision(Ball b1, Ball b2)
         {
-
-
             //caz 1
             if (b1.Type == "RegBall" && b2.Type == "RegBall")
             {
@@ -166,9 +165,10 @@ namespace BBG_BigBallGame
                 blarge.Raza += bsmall.Raza;
                 blarge.ColorChange(bsmall.Raza / (blarge.Raza + bsmall.Raza), bsmall.Color);
                 lista.Remove(bsmall);
+                regular--;
             }
             else//caz2
-                if ((b1.Type == "Regball" && b2.Type == "MonBall") || (b2.Type == "Regball" && b1.Type == "MonBall"))
+                if ((b1.Type == "RegBall" && b2.Type == "MonBall") || (b2.Type == "RegBall" && b1.Type == "MonBall"))
             {
                 Ball rball;
                 Ball mball;
@@ -178,9 +178,10 @@ namespace BBG_BigBallGame
                 { rball = b2; mball = b1; }
                 mball.Raza += rball.Raza;
                 lista.Remove(rball);
+                regular--;
             }
             else//caz3
-                if ((b1.Type == "Regball" && b2.Type == "RepBall") || (b2.Type == "Regball" && b1.Type == "RepBall"))
+                if ((b1.Type == "RegBall" && b2.Type == "RepBall") || (b2.Type == "RegBall" && b1.Type == "RepBall"))
             {
                 Ball rball;
                 Ball rpball;
@@ -189,7 +190,7 @@ namespace BBG_BigBallGame
                 else
                 { rball = b2; rpball = b1; }
                 rpball.Color = rball.Color;
-                rball.Angle = rball.Angle < 0 ? rball.Raza + 180 : rball.Raza - 180;
+                rball.Angle += rball.Angle < 0 ? 180 : - 180;
             }
             else//caz4
                 if (b1.Type + b2.Type == "RepBallRepBall")
@@ -199,6 +200,7 @@ namespace BBG_BigBallGame
                 b2.Color = colAux;
             }
             else//caz 5
+            if((b1.Type == "RepBall" && b2.Type == "MonBall") || (b2.Type == "RepBall" && b1.Type == "MonBall"))
             {
                 if (b1.Type == "RepBall")
                     b1.Raza /= 2;
