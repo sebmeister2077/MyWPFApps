@@ -1,0 +1,9 @@
+C:\Users\Sebas\source\repos\MyWpfApps\Grafuri\bin\Debug\Grafuri.exe.config
+C:\Users\Sebas\source\repos\MyWpfApps\Grafuri\bin\Debug\Grafuri.exe
+C:\Users\Sebas\source\repos\MyWpfApps\Grafuri\bin\Debug\Grafuri.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Grafuri\obj\Debug\Grafuri.csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Grafuri\obj\Debug\Grafuri.Form.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Grafuri\obj\Debug\Grafuri.Properties.Resources.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Grafuri\obj\Debug\Grafuri.csproj.GenerateResource.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Grafuri\obj\Debug\Grafuri.exe
+C:\Users\Sebas\source\repos\MyWpfApps\Grafuri\obj\Debug\Grafuri.pdb

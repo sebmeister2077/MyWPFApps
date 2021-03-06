@@ -198,9 +198,9 @@ namespace BBG_BigBallGame
         private void btnreset_Click(object sender, EventArgs e)
         {
             t.Stop();
-            monster = int.Parse(txbxMon.Text);
-            repelent = int.Parse(txbxRep.Text);
-            regular = int.Parse(txbxReg.Text);
+            monster = int.Parse("0"+txbxMon.Text);
+            repelent = int.Parse("0"+txbxRep.Text);
+            regular = int.Parse("0"+txbxReg.Text);
             Initialize(ReturnBallCount(),randomMode);
             Start();
         }
@@ -343,7 +343,7 @@ namespace BBG_BigBallGame
         {
             if (txbxReg.Text != "")
             {
-                txbxReg.Text = Min(50, Max(0, int.Parse(txbxReg.Text))).ToString();
+                txbxReg.Text = Min(30, Max(0, int.Parse(txbxReg.Text))).ToString();
                 regular = int.Parse(txbxReg.Text);
             }
             else regular = 0;
@@ -353,7 +353,7 @@ namespace BBG_BigBallGame
         {
             if (txbxRep.Text != "")
             {
-                txbxRep.Text = Min(50, Max(0, int.Parse(txbxRep.Text))).ToString();
+                txbxRep.Text = Min(30, Max(0, int.Parse(txbxRep.Text))).ToString();
                 repelent = int.Parse(txbxRep.Text);
             }
             else repelent = 0;
@@ -363,7 +363,7 @@ namespace BBG_BigBallGame
         {
             if (txbxMon.Text != "")
             {
-                txbxMon.Text = Min(30, Max(0, int.Parse(txbxMon.Text))).ToString();
+                txbxMon.Text = Min(10, Max(0, int.Parse(txbxMon.Text))).ToString();
                 monster = int.Parse(txbxMon.Text);
             }
             else monster = 0;
