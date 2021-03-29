@@ -45,14 +45,15 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rbtnGenMode = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.rbtnCountMode = new System.Windows.Forms.RadioButton();
-            this.txbxReg = new System.Windows.Forms.TextBox();
-            this.txbxRep = new System.Windows.Forms.TextBox();
             this.txbxMon = new System.Windows.Forms.TextBox();
+            this.txbxRep = new System.Windows.Forms.TextBox();
+            this.txbxReg = new System.Windows.Forms.TextBox();
+            this.rbtnCountMode = new System.Windows.Forms.RadioButton();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnPauseResume = new System.Windows.Forms.Button();
+            this.ChckboxCollide = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trckbarSpeed)).BeginInit();
@@ -84,7 +85,7 @@
             this.trckbarSpeed.Location = new System.Drawing.Point(1306, 29);
             this.trckbarSpeed.Minimum = 1;
             this.trckbarSpeed.Name = "trckbarSpeed";
-            this.trckbarSpeed.Size = new System.Drawing.Size(119, 45);
+            this.trckbarSpeed.Size = new System.Drawing.Size(134, 45);
             this.trckbarSpeed.TabIndex = 2;
             this.trckbarSpeed.Value = 10;
             this.trckbarSpeed.Scroll += new System.EventHandler(this.trckbarSpeed_Scroll);
@@ -120,9 +121,9 @@
             // btnreset
             // 
             this.btnreset.Font = new System.Drawing.Font("Arial", 13.25F);
-            this.btnreset.Location = new System.Drawing.Point(1306, 377);
+            this.btnreset.Location = new System.Drawing.Point(1306, 400);
             this.btnreset.Name = "btnreset";
-            this.btnreset.Size = new System.Drawing.Size(119, 42);
+            this.btnreset.Size = new System.Drawing.Size(134, 42);
             this.btnreset.TabIndex = 6;
             this.btnreset.Text = "Reset";
             this.btnreset.UseVisualStyleBackColor = true;
@@ -208,7 +209,7 @@
             this.groupBox2.Controls.Add(this.txbxballs);
             this.groupBox2.Location = new System.Drawing.Point(1306, 68);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(119, 149);
+            this.groupBox2.Size = new System.Drawing.Size(134, 149);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Random Generation Mode";
@@ -235,37 +236,37 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Location = new System.Drawing.Point(1306, 223);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(119, 100);
+            this.groupBox3.Size = new System.Drawing.Size(134, 100);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Fixed Ball Count Mode";
             // 
-            // label3
+            // txbxMon
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 44);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Reg";
+            this.txbxMon.Location = new System.Drawing.Point(75, 60);
+            this.txbxMon.Name = "txbxMon";
+            this.txbxMon.Size = new System.Drawing.Size(27, 20);
+            this.txbxMon.TabIndex = 16;
+            this.txbxMon.Text = "1";
+            this.txbxMon.TextChanged += new System.EventHandler(this.txbxMon_TextChanged);
             // 
-            // label7
+            // txbxRep
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(39, 44);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(27, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Rep";
+            this.txbxRep.Location = new System.Drawing.Point(42, 60);
+            this.txbxRep.Name = "txbxRep";
+            this.txbxRep.Size = new System.Drawing.Size(27, 20);
+            this.txbxRep.TabIndex = 15;
+            this.txbxRep.Text = "3";
+            this.txbxRep.TextChanged += new System.EventHandler(this.txbxRep_TextChanged);
             // 
-            // label8
+            // txbxReg
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(72, 44);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(28, 13);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Mon";
+            this.txbxReg.Location = new System.Drawing.Point(9, 60);
+            this.txbxReg.Name = "txbxReg";
+            this.txbxReg.Size = new System.Drawing.Size(27, 20);
+            this.txbxReg.TabIndex = 14;
+            this.txbxReg.Text = "7";
+            this.txbxReg.TextChanged += new System.EventHandler(this.txbxReg_TextChanged);
             // 
             // rbtnCountMode
             // 
@@ -279,50 +280,62 @@
             this.rbtnCountMode.UseVisualStyleBackColor = true;
             this.rbtnCountMode.CheckedChanged += new System.EventHandler(this.rbtnCountMode_CheckedChanged);
             // 
-            // txbxReg
+            // label8
             // 
-            this.txbxReg.Location = new System.Drawing.Point(9, 60);
-            this.txbxReg.Name = "txbxReg";
-            this.txbxReg.Size = new System.Drawing.Size(27, 20);
-            this.txbxReg.TabIndex = 14;
-            this.txbxReg.Text = "7";
-            this.txbxReg.TextChanged += new System.EventHandler(this.txbxReg_TextChanged);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(72, 44);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(28, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Mon";
             // 
-            // txbxRep
+            // label7
             // 
-            this.txbxRep.Location = new System.Drawing.Point(42, 60);
-            this.txbxRep.Name = "txbxRep";
-            this.txbxRep.Size = new System.Drawing.Size(27, 20);
-            this.txbxRep.TabIndex = 15;
-            this.txbxRep.Text = "3";
-            this.txbxRep.TextChanged += new System.EventHandler(this.txbxRep_TextChanged);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(39, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(27, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Rep";
             // 
-            // txbxMon
+            // label3
             // 
-            this.txbxMon.Location = new System.Drawing.Point(75, 60);
-            this.txbxMon.Name = "txbxMon";
-            this.txbxMon.Size = new System.Drawing.Size(27, 20);
-            this.txbxMon.TabIndex = 16;
-            this.txbxMon.Text = "1";
-            this.txbxMon.TextChanged += new System.EventHandler(this.txbxMon_TextChanged);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Reg";
             // 
             // btnPauseResume
             // 
             this.btnPauseResume.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.btnPauseResume.ForeColor = System.Drawing.Color.Red;
-            this.btnPauseResume.Location = new System.Drawing.Point(1306, 329);
+            this.btnPauseResume.Location = new System.Drawing.Point(1306, 352);
             this.btnPauseResume.Name = "btnPauseResume";
-            this.btnPauseResume.Size = new System.Drawing.Size(119, 42);
+            this.btnPauseResume.Size = new System.Drawing.Size(134, 42);
             this.btnPauseResume.TabIndex = 14;
             this.btnPauseResume.Text = "Pause";
             this.btnPauseResume.UseVisualStyleBackColor = true;
             this.btnPauseResume.Click += new System.EventHandler(this.btnPauseResume_Click);
             // 
+            // ChckboxCollide
+            // 
+            this.ChckboxCollide.AutoSize = true;
+            this.ChckboxCollide.Location = new System.Drawing.Point(1306, 329);
+            this.ChckboxCollide.Name = "ChckboxCollide";
+            this.ChckboxCollide.Size = new System.Drawing.Size(148, 17);
+            this.ChckboxCollide.TabIndex = 15;
+            this.ChckboxCollide.Text = "MakeAllBallsCollide (Beta)";
+            this.ChckboxCollide.UseVisualStyleBackColor = true;
+            this.ChckboxCollide.MouseHover += new System.EventHandler(this.ChckboxCollide_MouseHover);
+            // 
             // BBG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1430, 801);
+            this.ClientSize = new System.Drawing.Size(1452, 801);
+            this.Controls.Add(this.ChckboxCollide);
             this.Controls.Add(this.btnPauseResume);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -375,6 +388,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPauseResume;
+        private System.Windows.Forms.CheckBox ChckboxCollide;
     }
 }
 

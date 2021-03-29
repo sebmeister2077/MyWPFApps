@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace BBG_BigBallGame
@@ -16,7 +17,7 @@ namespace BBG_BigBallGame
         const double PI = Math.PI;
         static Random rnd = new Random();
         Timer t;
-        private int regular, repelent, monster;
+        private int regular, repelent, monster;//Counts the number of balls
         List<Ball> lista;
         Bitmap bmp;
         Graphics grp;
@@ -198,6 +199,8 @@ namespace BBG_BigBallGame
         private void btnreset_Click(object sender, EventArgs e)
         {
             t.Stop();
+            btnPauseResume.Text = "Pause";
+            btnPauseResume.ForeColor = Color.Red;
             monster = int.Parse("0"+txbxMon.Text);
             repelent = int.Parse("0"+txbxRep.Text);
             regular = int.Parse("0"+txbxReg.Text);
@@ -211,6 +214,7 @@ namespace BBG_BigBallGame
         private void Collision(Ball b1, Ball b2)
         {
             //caz 1
+            //delete
             if (b1.Type == "RegBall" && b2.Type == "RegBall")
             {
                 Ball blarge, bsmall;
@@ -225,6 +229,7 @@ namespace BBG_BigBallGame
                 regular--;
             }
             else//caz2
+            //delete
                 if ((b1.Type == "RegBall" && b2.Type == "MonBall") || (b2.Type == "RegBall" && b1.Type == "MonBall"))
             {
                 Ball rball;
@@ -248,7 +253,13 @@ namespace BBG_BigBallGame
                 else
                 { rball = b2; rpball = b1; }
                 rpball.Color = rball.Color;
+                if(ChckboxCollide.Checked==false)
                 rball.Angle += rball.Angle < 0 ? 180 : - 180;
+                else
+                {
+                    rball.Angle = MergeAngles(rball.Angle,CreateAngle(rpball.Position,rball.Position));
+                    rpball.Angle = MergeAngles(rpball.Angle, CreateAngle(rball.Position,rpball.Position));
+                }    
             }
             else//caz4
                 if (b1.Type + b2.Type == "RepBallRepBall")
@@ -256,15 +267,80 @@ namespace BBG_BigBallGame
                 Color colAux = b1.Color;
                 b1.Color = b2.Color;
                 b2.Color = colAux;
+                if(ChckboxCollide.Checked==true)
+                {
+                    b1.Angle = MergeAngles(b1.Angle, CreateAngle(b2.Position, b1.Position));
+                    b2.Angle = MergeAngles(b2.Angle, CreateAngle(b1.Position, b2.Position));
+                }
             }
             else//caz 5
             if((b1.Type == "RepBall" && b2.Type == "MonBall") || (b2.Type == "RepBall" && b1.Type == "MonBall"))
             {
+                Ball rpball;
+                Ball monball;
                 if (b1.Type == "RepBall")
-                    b1.Raza /= 2;
+                { rpball = b1; monball = b2; }
                 else
-                    b2.Raza /= 2;
+                { rpball = b2; monball = b1; }
+                rpball.Raza /= 2;
+                rpball.Angle = MergeAngles(rpball.Angle, CreateAngle(monball.Position, rpball.Position));
             }
+        }
+        double RadiansToDegrees(double valRad)
+        {
+            return (360 / (2 * Math.PI) * valRad);
+        }
+        double DegreesToRadians(double valDeg)
+        {
+            return ((2 * Math.PI) / 360 * valDeg);
+        }
+        ///<summary>
+        ///Creates an Angle(from -180,to 180)
+        ///0 Indicating right, 180 or -180 indicating left, 90 up and -90 down
+        /// </summary>
+        private double CreateAngle(Punct basePosition, Punct relativePosition)
+        {
+            double catetaX,catetaY;
+            catetaX = Math.Abs(basePosition.X - relativePosition.X);
+            catetaY = Math.Abs(basePosition.Y - relativePosition.Y);
+            double unghi=0;
+            if (catetaX > 0 && catetaY > 0)
+                unghi = RadiansToDegrees(Math.Atan(catetaY / catetaX));
+            else
+            {
+                if (catetaX == 0)
+                    return basePosition.Y > relativePosition.Y ? -90 : 90;
+                else
+                    return basePosition.X > relativePosition.X ? 0 : 180;
+            }
+            //cele 4 cadrane=>4cazuri
+            if (relativePosition.Y > basePosition.Y)
+            {
+                if (relativePosition.X > basePosition.X)//dreapta jos
+                    unghi = -unghi;
+                else
+                    unghi = -180 + unghi;//stanga jos
+            }
+            else
+                if (relativePosition.X < basePosition.X)
+                unghi = 180 - unghi;
+            return unghi;
+        }
+        /// <summary>
+        /// Combines 2 Angles ∈ [-180,180]
+        /// (Used for Vectors)
+        /// </summary>
+        private double MergeAngles(double angle1,double angle2)
+        {
+            double min= Math.Min(angle1, angle2), max= Math.Max(angle1, angle2);
+            if(Math.Abs(angle1-angle2)<=180)
+            return max- Math.Abs(angle1 - angle2)/2;
+            if (Math.Abs(min) > Math.Abs(max))
+                return max + (180 + min + 180 - max) / 2;//max+jumatatea diferentei
+            else
+                return min + (-180-min-180-max)/2;
+            
+
         }
         #region Mode Select
         private void rbtnCountMode_CheckedChanged(object sender, EventArgs e)
@@ -385,6 +461,15 @@ namespace BBG_BigBallGame
                 btnPauseResume.ForeColor = Color.Red;
             }
         }
+
+        private void ChckboxCollide_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip ttip = new System.Windows.Forms.ToolTip();
+            this.Controls.Add(ChckboxCollide);
+            ttip.Active = true;
+            ttip.SetToolTip(ChckboxCollide, "Simulates better collision between 2 balls without taking into account of their type");
+        }
+
         public int Min(int a,int b)
         {
             return Math.Min(a, b);

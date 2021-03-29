@@ -10,8 +10,9 @@ namespace Grafuri
     class Node
     {
         float x, y;
+        int id;
         public Node() { }
-        public Node(float x,float y)
+        public Node(float x, float y)
         {
             this.x = x;
             this.y = y;
@@ -29,6 +30,12 @@ namespace Grafuri
         public float Y
         {
             get { return y; }
+        }
+        public int Id
+        {
+            
+            get { return id; } 
+            set { id = value; }
         }
         public PointF Position
         {

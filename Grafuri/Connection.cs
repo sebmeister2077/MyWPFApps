@@ -15,9 +15,13 @@ namespace Grafuri
         {
             this.i = i;this.j = j;
         }
-        public (ushort,ushort) GetConnIndexes
+        public ushort I
         {
-            get { return (i, j); }
+            get { return i; }
+        }
+        public ushort J
+        {
+            get { return j; }
         }
 
     }
