@@ -8,3 +8,4 @@ C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG-BigBallGame.
 C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG-BigBallGame.exe
 C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG-BigBallGame.pdb
 C:\Users\Sebas\source\repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG-BigBallGame.csproj.CoreCompileInputs.cache
+C:\Users\Sebas\Source\Repos\MyWpfApps\BBG-BigBallGame\obj\Debug\BBG_BigBallGame.Form1.resources

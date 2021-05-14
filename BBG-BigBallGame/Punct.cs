@@ -15,6 +15,11 @@ namespace BBG_BigBallGame
             this.x = x;
             this.y = y;
         }
+        public Punct(Punct p)
+        {
+            this.x = p.x;
+            this.y = p.y;
+        }
         public double X
         {
             get { return x; }
@@ -25,5 +30,6 @@ namespace BBG_BigBallGame
             get { return y; }
             set { y = value; }
         }
+        public static Punct operator +(Punct p1, Punct p2) => new Punct(p1.X + p2.X, p1.Y + p2.Y);
     }
 }

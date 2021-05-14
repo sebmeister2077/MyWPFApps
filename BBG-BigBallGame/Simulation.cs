@@ -31,6 +31,7 @@ namespace BBG_BigBallGame
         }
         private void BBG_Load(object sender, EventArgs e)
         {
+            
             bmp = new Bitmap(1300, 800);
             remove = new Stack<Ball>();
             lista = new List<Ball>();
@@ -45,6 +46,7 @@ namespace BBG_BigBallGame
 
         private void Initialize(int n,bool random=false)
         {
+            Ball.SumaAriilor = 0;
             remove = new Stack<Ball>();
             lista = new List<Ball>();
             int auxm, auxrp, auxrg;//in caz ca este cu nr fix de bile x,y,si z
@@ -89,6 +91,8 @@ namespace BBG_BigBallGame
                 }
                 lista.Add(b);
             }
+            if (Ball.SumaRazelor > Min(bmp.Width, bmp.Height)
+
         }
 
         private int ReturnBallCount()
@@ -162,19 +166,23 @@ namespace BBG_BigBallGame
                 lista.Remove(remove.Pop());
             while (buffer.Count > 0)
                 buffer.Peek().Item1.RemoveVisitor(buffer.Dequeue().Item2);
+
             //Update canvas
             grp = Graphics.FromImage(bmp);
             grp.Clear(Color.AntiqueWhite);
             foreach(var ball in lista)
-            {
-                SolidBrush brush = new SolidBrush(ball.Color);
-                grp.FillEllipse(brush, (float)ball.X - (float)ball.Raza, (float)ball.Y - (float)ball.Raza, 2* (float)ball.Raza, 2* (float)ball.Raza);
-                using (Font myFont = new Font("Arial", 10))
-                {
-                    grp.DrawString(Prescurtare(ball.Type), myFont, Brushes.Black, new PointF((float)ball.X,(float)ball.Y));
-                }
-            }
+                DrawBall(ball);
             pictureBox1.Image = bmp;
+        }
+
+        private void DrawBall(Ball ball)
+        {
+            SolidBrush brush = new SolidBrush(ball.Color);
+            grp.FillEllipse(brush, (float)ball.X - (float)ball.Raza, (float)ball.Y - (float)ball.Raza, 2 * (float)ball.Raza, 2 * (float)ball.Raza);
+            using (Font myFont = new Font("Arial", 10))
+            {
+                grp.DrawString(Prescurtare(ball.Type), myFont, Brushes.Black, new PointF((float)ball.X, (float)ball.Y));
+            }
         }
 
         private string Prescurtare(string type)
@@ -339,8 +347,6 @@ namespace BBG_BigBallGame
                 return max + (180 + min + 180 - max) / 2;//max+jumatatea diferentei
             else
                 return min + (-180-min-180-max)/2;
-            
-
         }
         #region Mode Select
         private void rbtnCountMode_CheckedChanged(object sender, EventArgs e)
@@ -468,6 +474,11 @@ namespace BBG_BigBallGame
             this.Controls.Add(ChckboxCollide);
             ttip.Active = true;
             ttip.SetToolTip(ChckboxCollide, "Simulates better collision between 2 balls without taking into account of their type");
+        }
+
+        private void chckbxTrails_CheckedChanged(object sender, EventArgs e)
+        {
+            //turns ON/OFF the trails mode(not done)
         }
 
         public int Min(int a,int b)

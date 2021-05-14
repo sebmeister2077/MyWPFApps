@@ -54,6 +54,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnPauseResume = new System.Windows.Forms.Button();
             this.ChckboxCollide = new System.Windows.Forms.CheckBox();
+            this.chckbxTrails = new System.Windows.Forms.CheckBox();
+            this.chckbxwalls = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trckbarSpeed)).BeginInit();
@@ -121,7 +123,7 @@
             // btnreset
             // 
             this.btnreset.Font = new System.Drawing.Font("Arial", 13.25F);
-            this.btnreset.Location = new System.Drawing.Point(1306, 400);
+            this.btnreset.Location = new System.Drawing.Point(1306, 446);
             this.btnreset.Name = "btnreset";
             this.btnreset.Size = new System.Drawing.Size(134, 42);
             this.btnreset.TabIndex = 6;
@@ -311,7 +313,7 @@
             // 
             this.btnPauseResume.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.btnPauseResume.ForeColor = System.Drawing.Color.Red;
-            this.btnPauseResume.Location = new System.Drawing.Point(1306, 352);
+            this.btnPauseResume.Location = new System.Drawing.Point(1306, 398);
             this.btnPauseResume.Name = "btnPauseResume";
             this.btnPauseResume.Size = new System.Drawing.Size(134, 42);
             this.btnPauseResume.TabIndex = 14;
@@ -322,7 +324,7 @@
             // ChckboxCollide
             // 
             this.ChckboxCollide.AutoSize = true;
-            this.ChckboxCollide.Location = new System.Drawing.Point(1306, 329);
+            this.ChckboxCollide.Location = new System.Drawing.Point(1306, 352);
             this.ChckboxCollide.Name = "ChckboxCollide";
             this.ChckboxCollide.Size = new System.Drawing.Size(148, 17);
             this.ChckboxCollide.TabIndex = 15;
@@ -330,11 +332,34 @@
             this.ChckboxCollide.UseVisualStyleBackColor = true;
             this.ChckboxCollide.MouseHover += new System.EventHandler(this.ChckboxCollide_MouseHover);
             // 
+            // chckbxTrails
+            // 
+            this.chckbxTrails.AutoSize = true;
+            this.chckbxTrails.Location = new System.Drawing.Point(1306, 375);
+            this.chckbxTrails.Name = "chckbxTrails";
+            this.chckbxTrails.Size = new System.Drawing.Size(51, 17);
+            this.chckbxTrails.TabIndex = 16;
+            this.chckbxTrails.Text = "Trails";
+            this.chckbxTrails.UseVisualStyleBackColor = true;
+            this.chckbxTrails.CheckedChanged += new System.EventHandler(this.chckbxTrails_CheckedChanged);
+            // 
+            // chckbxwalls
+            // 
+            this.chckbxwalls.AutoSize = true;
+            this.chckbxwalls.Location = new System.Drawing.Point(1306, 329);
+            this.chckbxwalls.Name = "chckbxwalls";
+            this.chckbxwalls.Size = new System.Drawing.Size(126, 17);
+            this.chckbxwalls.TabIndex = 17;
+            this.chckbxwalls.Text = "Collide with boundary";
+            this.chckbxwalls.UseVisualStyleBackColor = true;
+            // 
             // BBG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1452, 801);
+            this.Controls.Add(this.chckbxwalls);
+            this.Controls.Add(this.chckbxTrails);
             this.Controls.Add(this.ChckboxCollide);
             this.Controls.Add(this.btnPauseResume);
             this.Controls.Add(this.groupBox3);
@@ -389,6 +414,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPauseResume;
         private System.Windows.Forms.CheckBox ChckboxCollide;
+        private System.Windows.Forms.CheckBox chckbxTrails;
+        private System.Windows.Forms.CheckBox chckbxwalls;
     }
 }
 
