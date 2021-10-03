@@ -184,11 +184,11 @@ namespace Bezier_Function
         {
             if(e.Button == MouseButtons.Left)
             {
+                Point globalMousePosition = Control.MousePosition;
                 if (crazyMode)
                     Location = new Point(Location.X + mouseBefore.X - e.X, Location.Y + mouseBefore.Y - e.Y);
                 else
-                    Location = new Point(Location.X - mouseBefore.X + e.X, Location.Y - mouseBefore.Y + e.Y);
-                mouseBefore = new Point(e.X, e.Y);
+                    Location = new Point(globalMousePosition.X - e.X - (mouseBefore.X - e.X), globalMousePosition.Y - e.Y - (mouseBefore.Y - e.Y));
             }
         }
     }
