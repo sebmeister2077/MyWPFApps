@@ -1,0 +1,10 @@
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\bin\Debug\Bezier Function.exe.config
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\bin\Debug\Bezier Function.exe
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\bin\Debug\Bezier Function.pdb
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\obj\Debug\Bezier Function.csprojAssemblyReference.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\obj\Debug\Bezier_Function.Form1.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\obj\Debug\Bezier_Function.Properties.Resources.resources
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\obj\Debug\Bezier Function.csproj.GenerateResource.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\obj\Debug\Bezier Function.csproj.CoreCompileInputs.cache
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\obj\Debug\Bezier Function.exe
+C:\Users\Sebas\source\repos\MyWpfApps\Bezier Function\obj\Debug\Bezier Function.pdb
