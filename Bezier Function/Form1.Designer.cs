@@ -44,6 +44,9 @@ namespace Bezier_Function
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.chckDragMode = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtbxSmoothness = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.dragPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -67,7 +70,7 @@ namespace Bezier_Function
             this.txtbxNumber.Location = new System.Drawing.Point(902, 72);
             this.txtbxNumber.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtbxNumber.Name = "txtbxNumber";
-            this.txtbxNumber.Size = new System.Drawing.Size(100, 20);
+            this.txtbxNumber.Size = new System.Drawing.Size(125, 20);
             this.txtbxNumber.TabIndex = 1;
             this.txtbxNumber.TextChanged += new System.EventHandler(this.txtbxNumber_TextChanged);
             // 
@@ -88,7 +91,7 @@ namespace Bezier_Function
             this.txtbxPoints.Location = new System.Drawing.Point(902, 160);
             this.txtbxPoints.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtbxPoints.Name = "txtbxPoints";
-            this.txtbxPoints.Size = new System.Drawing.Size(98, 96);
+            this.txtbxPoints.Size = new System.Drawing.Size(125, 96);
             this.txtbxPoints.TabIndex = 3;
             this.txtbxPoints.Text = "";
             this.txtbxPoints.TextChanged += new System.EventHandler(this.txtbxPoints_TextChanged);
@@ -114,7 +117,7 @@ namespace Bezier_Function
             this.button1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.button1.Name = "button1";
             this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(98, 35);
+            this.button1.Size = new System.Drawing.Size(125, 35);
             this.button1.TabIndex = 5;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = false;
@@ -124,7 +127,7 @@ namespace Bezier_Function
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(911, 567);
+            this.linkLabel1.Location = new System.Drawing.Point(923, 568);
             this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(104, 15);
@@ -178,7 +181,7 @@ namespace Bezier_Function
             this.dragPanel.Location = new System.Drawing.Point(0, 0);
             this.dragPanel.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.dragPanel.Name = "dragPanel";
-            this.dragPanel.Size = new System.Drawing.Size(1025, 43);
+            this.dragPanel.Size = new System.Drawing.Size(1048, 43);
             this.dragPanel.TabIndex = 11;
             this.dragPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dragPanel_MouseDown);
             this.dragPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dragPanel_MouseMove);
@@ -187,7 +190,7 @@ namespace Bezier_Function
             // 
             this.btnMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Location = new System.Drawing.Point(918, 26);
+            this.btnMinimize.Location = new System.Drawing.Point(949, 26);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(39, 14);
             this.btnMinimize.TabIndex = 2;
@@ -199,7 +202,7 @@ namespace Bezier_Function
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnClose.Location = new System.Drawing.Point(969, 4);
+            this.btnClose.Location = new System.Drawing.Point(993, 5);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(45, 35);
@@ -219,12 +222,50 @@ namespace Bezier_Function
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // chckDragMode
+            // 
+            this.chckDragMode.AutoSize = true;
+            this.chckDragMode.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.chckDragMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chckDragMode.Location = new System.Drawing.Point(902, 492);
+            this.chckDragMode.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.chckDragMode.Name = "chckDragMode";
+            this.chckDragMode.Size = new System.Drawing.Size(106, 17);
+            this.chckDragMode.TabIndex = 12;
+            this.chckDragMode.Text = "Crazy Drag Mode";
+            this.chckDragMode.UseVisualStyleBackColor = true;
+            this.chckDragMode.CheckedChanged += new System.EventHandler(this.chckDragMode_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(902, 361);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(146, 26);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Smoothness \r\n(100 or above recommended)";
+            // 
+            // txtbxSmoothness
+            // 
+            this.txtbxSmoothness.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.txtbxSmoothness.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtbxSmoothness.Location = new System.Drawing.Point(905, 391);
+            this.txtbxSmoothness.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.txtbxSmoothness.Name = "txtbxSmoothness";
+            this.txtbxSmoothness.Size = new System.Drawing.Size(125, 20);
+            this.txtbxSmoothness.TabIndex = 14;
+            this.txtbxSmoothness.Text = "100";
+            this.txtbxSmoothness.TextChanged += new System.EventHandler(this.txtbxSmoothness_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1025, 594);
+            this.ClientSize = new System.Drawing.Size(1049, 594);
+            this.Controls.Add(this.txtbxSmoothness);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.chckDragMode);
             this.Controls.Add(this.dragPanel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.chckStopClear);
@@ -270,6 +311,9 @@ namespace Bezier_Function
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.CheckBox chckDragMode;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtbxSmoothness;
     }
 }
 

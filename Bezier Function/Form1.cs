@@ -32,6 +32,7 @@ namespace Bezier_Function
         static int numberOfPoints = 0;
         static List<Point> points;
         static int percent = 0;
+        static int maxPercentage = 100;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -53,7 +54,7 @@ namespace Bezier_Function
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            percent = (percent + 1) % 100;
+            percent = (percent + 1) % maxPercentage;
             if(points.Count > 0)
                 RenderImage();
         }
@@ -62,19 +63,21 @@ namespace Bezier_Function
         {
             if(!dontClear)
                 grps.Clear(canvas.BackColor);
+            int size = ReturnRange(16 / ((double)maxPercentage / 100), 2, 10);
             SolidBrush brush = new SolidBrush(Color.FromArgb(65, 119, 153));
 
             DrawPointsAndLines(points.ToArray(), brush, Pens.Black);
 
-            Point bezierPoint = BezierFunction(points.ToArray(), (double)percent / 100);
-            grps.FillEllipse(Brushes.Blue, bezierPoint.X - 5, bezierPoint.Y - 5, 10, 10);
+            Point bezierPoint = BezierFunction(points.ToArray(), (double)percent / maxPercentage);
+            grps.FillEllipse(Brushes.Blue, bezierPoint.X - size/2, bezierPoint.Y - size/2, size, size);
             canvas.Image = bmp;
         }
 
         private void DrawPointsAndLines(Point[] givenPoints,Brush brush,Pen pen)
         {
+            int size = ReturnRange(12/((double)maxPercentage / 100), 2, 10);
             foreach (Point point in givenPoints)
-                grps.FillEllipse(brush, point.X - 5, point.Y - 5, 10, 10);
+                grps.FillEllipse(brush, point.X - size / 2, point.Y - size / 2, size, size);
             for (int i = 0; i < givenPoints.Length - 1; i++)
                 grps.DrawLine(Pens.Black, points[i], points[i + 1]);
         }
@@ -87,6 +90,8 @@ namespace Bezier_Function
             percent = 0;
             grps.Clear(canvas.BackColor);
         }
+
+        private int ReturnRange(double number, double min, double max) => (int)Math.Max(Math.Min(number, max), min);
 
         private void HandleGameStateChange(bool? value = null)
         {
@@ -172,6 +177,8 @@ namespace Bezier_Function
 
         private void chkbxVisibility_CheckedChanged(object sender, EventArgs e) => drawExtras = chkbxVisibility.Checked;
 
+        private void chckDragMode_CheckedChanged(object sender, EventArgs e) => crazyMode = !crazyMode;
+
         private void chckStopClear_CheckedChanged(object sender, EventArgs e) => dontClear = !dontClear;
 
         private void btnClose_Click(object sender, EventArgs e) => this.Close();
@@ -190,6 +197,22 @@ namespace Bezier_Function
                 else
                     Location = new Point(globalMousePosition.X - e.X - (mouseBefore.X - e.X), globalMousePosition.Y - e.Y - (mouseBefore.Y - e.Y));
             }
+        }
+
+        private void txtbxSmoothness_TextChanged(object sender, EventArgs e)
+        {
+            string text = txtbxSmoothness.Text;
+            Regex reg = new Regex(@"\D");
+            if (reg.Match(text).Success || text == "")
+            {
+                txtbxSmoothness.Text = maxPercentage.ToString();
+                return;
+            }
+            int numberParsed = int.Parse(txtbxSmoothness.Text);
+            maxPercentage = Math.Min(Math.Max(10, numberParsed),1000);
+            txtbxSmoothness.Text = maxPercentage.ToString();
+            timer.Interval = maxPercentage / 10;
+            grps.Clear(canvas.BackColor);
         }
     }
     public static class StringExtensionCLass
