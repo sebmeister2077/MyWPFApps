@@ -21,7 +21,7 @@ namespace Bezier_Function
         static Size formSize = new Size(1025, 600);
         static bool drawExtras = false;
         static bool dontClear = false;
-        static bool isCaptured = false;
+        static bool crazyMode = false;
         static Point mouseBefore;
 
         static Timer timer;
@@ -177,6 +177,20 @@ namespace Bezier_Function
         private void btnClose_Click(object sender, EventArgs e) => this.Close();
 
         private void btnMinimize_Click(object sender, EventArgs e) => this.WindowState = FormWindowState.Minimized;
+
+        private void dragPanel_MouseDown(object sender, MouseEventArgs e) => mouseBefore = new Point(e.X, e.Y);
+
+        private void dragPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                if (crazyMode)
+                    Location = new Point(Location.X + mouseBefore.X - e.X, Location.Y + mouseBefore.Y - e.Y);
+                else
+                    Location = new Point(Location.X - mouseBefore.X + e.X, Location.Y - mouseBefore.Y + e.Y);
+                mouseBefore = new Point(e.X, e.Y);
+            }
+        }
     }
     public static class StringExtensionCLass
     {
