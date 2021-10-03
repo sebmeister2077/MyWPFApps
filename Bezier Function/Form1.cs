@@ -23,16 +23,17 @@ namespace Bezier_Function
         static bool dontClear = false;
         static bool crazyMode = false;
         static Point mouseBefore;
+        static bool pointMoved = false;
 
         static Timer timer;
         static Graphics grps;
         static Bitmap bmp;
-
         static bool gameState = false;
         static int numberOfPoints = 0;
         static List<Point> points;
         static int percent = 0;
         static int maxPercentage = 100;
+        static bool alreadyReset = false;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -47,11 +48,6 @@ namespace Bezier_Function
             mouseBefore = new Point(0, 0);
         }
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            ControlPaint.DrawBorder(e.Graphics, ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
-        }
-
         private void Timer_Tick(object sender, EventArgs e)
         {
             percent = (percent + 1) % maxPercentage;
@@ -59,6 +55,7 @@ namespace Bezier_Function
                 RenderImage();
         }
 
+        #region RequiredFunctions
         private void RenderImage()
         {
             if(!dontClear)
@@ -128,7 +125,12 @@ namespace Bezier_Function
             new Point((int)((1 - percentage) * pointA.X + percentage * pointB.X), (int)((1 - percentage) * pointA.Y + percentage * pointB.Y));
 
         private double Distance(Point p1, Point p2) => Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
+        
+        private bool IsOutsideOfCanvas(Point p) => p.X < 1 || p.Y < 1 || p.X > canvas.Width || p.Y > canvas.Height;
 
+        #endregion
+
+        #region RequiredEvents
         private void button1_Click(object sender, EventArgs e)
         {
             HandleGameStateChange();
@@ -136,22 +138,35 @@ namespace Bezier_Function
 
         private void txtbxPoints_TextChanged(object sender, EventArgs e)
         {
-            ResetVars();
-
             string text = txtbxPoints.Text;
             string[] lines = text.Split('\n');
             Regex reg = new Regex(@"\([0-9]+,[0-9]+\)");
             MatchCollection matches = reg.Matches(text);
 
+
+            bool resetVars = !pointMoved && matches.Count != numberOfPoints;
+            if (resetVars)
+                ResetVars();
+
+            
+
+            alreadyReset = true;
             txtbxNumber.Text = matches.Count.ToString();
             numberOfPoints = matches.Count;
+            if (resetVars)
             foreach (string line in lines)
                 if (reg.Match(line).Success)
                     points.Add(line.StringToPoint());
+            pointMoved = false;
         }
 
         private void txtbxNumber_TextChanged(object sender, EventArgs e)
         {
+            if (alreadyReset)
+            {
+                alreadyReset = false;
+                return;
+            }
             ResetVars();
 
             string text = txtbxNumber.Text;
@@ -159,6 +174,9 @@ namespace Bezier_Function
             MatchCollection matches = reg.Matches(text);
             if (matches.Count == 0&& text.Length > 0)
                 numberOfPoints = int.Parse(text);
+            if (text != "")
+                txtbxNumber.Text = numberOfPoints.ToString();
+
         }
 
         private void canvas_Click(object sender, EventArgs e)
@@ -172,6 +190,22 @@ namespace Bezier_Function
                 points.Add(mouseE.Location);
             }
         }
+        #endregion
+
+        #region ExtraFunctions
+
+        private void WritePointsInText()
+        {
+            StringBuilder bobTheBuilder = new StringBuilder();
+            foreach (Point p in points)
+                bobTheBuilder.AppendLine("(" + p.X.ToString() + "," + p.Y.ToString() + ")");
+            txtbxPoints.Text = bobTheBuilder.ToString();
+        }
+
+
+        #endregion
+
+        #region ExtraEvents
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("chrome.exe", "https://www.youtube.com/watch?v=pnYccz1Ha34");
@@ -219,7 +253,7 @@ namespace Bezier_Function
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && points.Count == numberOfPoints)
+            if (e.Button == MouseButtons.Left && points.Count == numberOfPoints&& numberOfPoints > 0)
             {
                 int index=0;
                 double minDistance=double.MaxValue;
@@ -232,9 +266,17 @@ namespace Bezier_Function
                         minDistance = foundDistance;
                     }
                 }
-                points[index] = new Point(e.X, e.Y);
+                Point newPoint = new Point(e.X, e.Y);
+                if (!IsOutsideOfCanvas(newPoint))
+                {
+                    points[index] = newPoint;
+                    pointMoved = true;
+                    WritePointsInText();
+                }
+                
             }
         }
+        #endregion
     }
     public static class StringExtensionCLass
     {
