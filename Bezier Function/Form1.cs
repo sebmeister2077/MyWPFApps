@@ -127,6 +127,8 @@ namespace Bezier_Function
         private Point BezierPoint(Point pointA,Point pointB,double percentage) => 
             new Point((int)((1 - percentage) * pointA.X + percentage * pointB.X), (int)((1 - percentage) * pointA.Y + percentage * pointB.Y));
 
+        private double Distance(Point p1, Point p2) => Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
+
         private void button1_Click(object sender, EventArgs e)
         {
             HandleGameStateChange();
@@ -213,6 +215,25 @@ namespace Bezier_Function
             txtbxSmoothness.Text = maxPercentage.ToString();
             timer.Interval = maxPercentage / 10;
             grps.Clear(canvas.BackColor);
+        }
+
+        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && points.Count == numberOfPoints)
+            {
+                int index=0;
+                double minDistance=double.MaxValue;
+                for(int i = 0; i < points.Count; i++)
+                {
+                    double foundDistance = Distance(e.Location, points[i]);
+                    if (foundDistance < minDistance)
+                    {
+                        index = i;
+                        minDistance = foundDistance;
+                    }
+                }
+                points[index] = new Point(e.X, e.Y);
+            }
         }
     }
     public static class StringExtensionCLass
