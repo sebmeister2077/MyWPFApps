@@ -47,6 +47,7 @@ namespace Bezier_Function
             this.chckDragMode = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtbxSmoothness = new System.Windows.Forms.TextBox();
+            this.btnCreateRandom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.dragPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -100,7 +101,7 @@ namespace Bezier_Function
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(899, 144);
+            this.label2.Location = new System.Drawing.Point(899, 143);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
@@ -128,7 +129,7 @@ namespace Bezier_Function
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(923, 568);
+            this.linkLabel1.Location = new System.Drawing.Point(941, 568);
             this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(104, 15);
@@ -154,7 +155,7 @@ namespace Bezier_Function
             // 
             this.chckStopClear.AutoSize = true;
             this.chckStopClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.chckStopClear.Location = new System.Drawing.Point(902, 336);
+            this.chckStopClear.Location = new System.Drawing.Point(902, 338);
             this.chckStopClear.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.chckStopClear.Name = "chckStopClear";
             this.chckStopClear.Size = new System.Drawing.Size(102, 17);
@@ -169,9 +170,9 @@ namespace Bezier_Function
             this.label3.Location = new System.Drawing.Point(899, 95);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 39);
+            this.label3.Size = new System.Drawing.Size(137, 26);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Enter number of points \r\nand then click\r\n on canvas\r\n";
+            this.label3.Text = "Enter number of points and \r\nthen click on canvas\r\n";
             // 
             // dragPanel
             // 
@@ -182,7 +183,7 @@ namespace Bezier_Function
             this.dragPanel.Location = new System.Drawing.Point(0, 0);
             this.dragPanel.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.dragPanel.Name = "dragPanel";
-            this.dragPanel.Size = new System.Drawing.Size(1048, 43);
+            this.dragPanel.Size = new System.Drawing.Size(1059, 43);
             this.dragPanel.TabIndex = 11;
             this.dragPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dragPanel_MouseDown);
             this.dragPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dragPanel_MouseMove);
@@ -191,7 +192,7 @@ namespace Bezier_Function
             // 
             this.btnMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Location = new System.Drawing.Point(949, 26);
+            this.btnMinimize.Location = new System.Drawing.Point(960, 25);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(39, 14);
             this.btnMinimize.TabIndex = 2;
@@ -203,7 +204,7 @@ namespace Bezier_Function
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnClose.Location = new System.Drawing.Point(993, 5);
+            this.btnClose.Location = new System.Drawing.Point(1004, 4);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(45, 35);
@@ -228,19 +229,19 @@ namespace Bezier_Function
             this.chckDragMode.AutoSize = true;
             this.chckDragMode.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.chckDragMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chckDragMode.Location = new System.Drawing.Point(902, 492);
+            this.chckDragMode.Location = new System.Drawing.Point(902, 518);
             this.chckDragMode.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.chckDragMode.Name = "chckDragMode";
-            this.chckDragMode.Size = new System.Drawing.Size(106, 17);
+            this.chckDragMode.Size = new System.Drawing.Size(147, 17);
             this.chckDragMode.TabIndex = 12;
-            this.chckDragMode.Text = "Crazy Drag Mode";
+            this.chckDragMode.Text = "Crazy WIndow Drag Mode";
             this.chckDragMode.UseVisualStyleBackColor = true;
             this.chckDragMode.CheckedChanged += new System.EventHandler(this.chckDragMode_CheckedChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(902, 361);
+            this.label4.Location = new System.Drawing.Point(899, 361);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(146, 26);
             this.label4.TabIndex = 13;
@@ -253,17 +254,35 @@ namespace Bezier_Function
             this.txtbxSmoothness.Location = new System.Drawing.Point(905, 391);
             this.txtbxSmoothness.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtbxSmoothness.Name = "txtbxSmoothness";
-            this.txtbxSmoothness.Size = new System.Drawing.Size(125, 20);
+            this.txtbxSmoothness.Size = new System.Drawing.Size(122, 20);
             this.txtbxSmoothness.TabIndex = 14;
             this.txtbxSmoothness.Text = "100";
             this.txtbxSmoothness.TextChanged += new System.EventHandler(this.txtbxSmoothness_TextChanged);
+            // 
+            // btnCreateRandom
+            // 
+            this.btnCreateRandom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.btnCreateRandom.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.btnCreateRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateRandom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateRandom.ForeColor = System.Drawing.Color.Beige;
+            this.btnCreateRandom.Location = new System.Drawing.Point(902, 419);
+            this.btnCreateRandom.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnCreateRandom.Name = "btnCreateRandom";
+            this.btnCreateRandom.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnCreateRandom.Size = new System.Drawing.Size(125, 49);
+            this.btnCreateRandom.TabIndex = 15;
+            this.btnCreateRandom.Text = "Create Random Points";
+            this.btnCreateRandom.UseVisualStyleBackColor = false;
+            this.btnCreateRandom.Click += new System.EventHandler(this.btnCreateRandom_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1049, 594);
+            this.ClientSize = new System.Drawing.Size(1056, 594);
+            this.Controls.Add(this.btnCreateRandom);
             this.Controls.Add(this.txtbxSmoothness);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.chckDragMode);
@@ -315,6 +334,7 @@ namespace Bezier_Function
         private System.Windows.Forms.CheckBox chckDragMode;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtbxSmoothness;
+        private System.Windows.Forms.Button btnCreateRandom;
     }
 }
 
