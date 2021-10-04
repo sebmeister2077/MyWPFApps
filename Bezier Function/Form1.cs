@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -23,15 +24,17 @@ namespace Bezier_Function
         private const int WM_APPCOMMAND = 0x319;
         private const int APPCOMMAND_VOLUME_UP = 0xA0000;
         private const int APPCOMMAND_VOLUME_DOWN = 0x90000;
+        private string basePath;
         System.Media.SoundPlayer player;
+        private delegate void Callback(SpecialObject obj);
 
-        static Size formSize = new Size(1025, 600);
         static bool drawExtras = false;
         static bool dontClear = false;
         static bool crazyMode = false;
         static Point mouseBefore;
         static bool pointMoved = false;
         static Random rnd = new Random();
+        static int hash = 0;
 
         static Timer timer;
         static Graphics grps;
@@ -55,7 +58,10 @@ namespace Bezier_Function
             grps = Graphics.FromImage(bmp);
             mouseBefore = new Point(0, 0);
 
+            basePath = Application.StartupPath.Substring(0, Application.StartupPath.Length - 9);
             player = new System.Media.SoundPlayer();
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(label1, "Enter number of points and then click on canvas");
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -200,6 +206,8 @@ namespace Bezier_Function
                 MouseEventArgs mouseE = (MouseEventArgs)e;
                 points.Add(mouseE.Location);
             }
+            if (points.Count == numberOfPoints)
+                WritePointsInText();
         }
         #endregion
 
@@ -213,31 +221,43 @@ namespace Bezier_Function
             txtbxPoints.Text = bobTheBuilder.ToString();
         }
 
-        float triangleArea(Point p1, Point p2, Point p3) => Math.Abs(((float)p1.X * (p2.Y - p3.Y) + p2.X * (p3.Y - p1.Y) + p3.X * (p1.Y - p2.Y)) / 2);
-
-        bool IsInsideTriangle(Point p1, Point p2, Point p3, Point p)
-        {   
-            float area = triangleArea(p1, p2, p3);         
-            float area1 = triangleArea(p, p2, p3);
-            float area2 = triangleArea(p1, p, p3);      
-            float area3 = triangleArea(p1, p2, p);      
-
-            return (area == area1 + area2 + area3);        
+        private void CreateRandomPoints()
+        {
+            ResetVars();
+            Point[] pointArr = new Point[numberOfPoints];
+            pointArr[0] = new Point(rnd.Next(2, canvas.Width - 2), rnd.Next(2, canvas.Height - 2));
+            const int amplitude = 100;
+            const int offset = 70;
+            for (int i = 1; i < numberOfPoints; i++)
+            {
+                double x = pointArr[i - 1].X;
+                double y = pointArr[i - 1].Y;
+                double w = canvas.Width;
+                double h = canvas.Height;
+                pointArr[i] = new Point(ReturnRange(rnd.Next((int)(x - (amplitude * Math.Log10(x) - offset)), (int)(x + (amplitude * Math.Log10(-x + w) - offset))), 5, w - 5),
+                    ReturnRange(rnd.Next((int)(y - (amplitude * Math.Log10(y) - offset)), (int)(y + (amplitude * Math.Log10(-y + h) - offset))), 5, h - 5)); 
+            }
+            points = pointArr.ToList();
+            hash = points.GetHashCode();
         }
 
-        private double CalculateAlpha(Point p,Point staticPoint)
+        private void GotResponse(SpecialObject obj)
         {
-            if (p.X > staticPoint.X && p.Y >= staticPoint.Y)
-                return Math.Atan(p.X / p.Y);
-            if (p.X > staticPoint.X && p.Y < staticPoint.Y)
-                return Math.Atan(p.X / p.Y) + 2 * Math.PI;
-            if (p.X < staticPoint.X)
-                return Math.Atan(p.X / p.Y) + Math.PI;
-            if (p.X == staticPoint.X && p.Y > staticPoint.Y)
-                return Math.PI / 2;
-            if (p.X > staticPoint.X && p.Y < staticPoint.Y)
-                return 3 / 2 * Math.PI;
-            return 0;
+            txtbxTitle.Text = obj.Title;
+            ConvertFromStringToSpecialObject(obj.Points);
+        }
+
+        private void  ConvertFromStringToSpecialObject(string pointsStr)
+        {
+            points = new List<Point>();
+            string[] pointArray = pointsStr.Split('\n');
+            foreach(string p in pointArray)
+            {
+                string[] parts = p.Split(',');
+                points.Add(new Point(int.Parse(parts[0].Substring(1, parts[0].Length - 1)), int.Parse(parts[1].Substring(0, parts[1].Length - 1))));
+            }
+            numberOfPoints = points.Count;
+            WritePointsInText();
         }
 
         [DllImport("user32.dll")]
@@ -259,7 +279,7 @@ namespace Bezier_Function
             player.Stop();
             if (crazyMode)
             {
-                string basePath = Application.StartupPath.Substring(0, Application.StartupPath.Length - 9);
+                
                 player.SoundLocation =  basePath + @"Sounds\Gator.wav";
                 for(int i=0;i<50;i++)
                     SendMessageW(this.Handle, WM_APPCOMMAND, this.Handle, (IntPtr)APPCOMMAND_VOLUME_DOWN);
@@ -329,51 +349,41 @@ namespace Bezier_Function
                     pointMoved = true;
                     WritePointsInText();
                 }
-                
             }
         }
 
         private void btnCreateRandom_Click(object sender, EventArgs e)
         {
             ResetVars();
-            List<Point> finalList = new List<Point>();
-            for (int i = 0; i < numberOfPoints; i++)
-                points.Add(new Point(rnd.Next(2, canvas.Width - 2), rnd.Next(2, canvas.Height - 2)));
-            if (numberOfPoints <= 3 || numberOfPoints > 10) 
-                return;
-            for (int i = 0; i < points.Count; i++)
-                for (int j = 0; j < points.Count - 2; j++)
-                    if (j != i)
-                        for (int k = j + 1; k < points.Count - 1; k++)
-                            if (k != j && k != i)
-                                for (int l = k + 1; l < points.Count; l++)
-                                    if (l != k && l != j && l != i)
-                                        if (!IsInsideTriangle(points[l], points[k], points[j], points[i]))
-                                            finalList.Add(new Point(points[i].X, points[i].Y));
-            
-            int centerX = 0;
-            int centerY = 0;
-            foreach(Point p in finalList)
-            {
-                centerX += p.X;
-                centerY += p.Y;
-            }
-            Point center = new Point(centerX / finalList.Count, centerY / finalList.Count);
-            finalList.Sort(delegate(Point x,Point y) 
-            {
-                double xAlpha = CalculateAlpha(x, center);
-                double yAlpha = CalculateAlpha(y, center);
-                if (xAlpha > yAlpha)
-                    return 1;
-                if (yAlpha > xAlpha)
-                    return -1;
-                return 0;
-            });
-            points = new List<Point>(finalList);
+            CreateRandomPoints();
         }
+
+        private void btnExamples_Click(object sender, EventArgs e)
+        {
+            Callback waitForResponse = GotResponse;
+            Form exampleForm = new Examples(waitForResponse);
+            HandleGameStateChange(false);
+            exampleForm.Show();
+        }
+
+        private void btnSaveState_Click(object sender, EventArgs e)
+        {
+            string title = txtbxTitle.Text;
+            string[] fileNames = Directory.GetFiles(basePath+ @"Data\");
+            if (fileNames.Contains(title + ".txt"))
+            {
+                MessageBox.Show("This title is already token");
+                return;
+            }
+            bool isRandom = hash == points.GetHashCode();
+            Callback waitForResponse = GotResponse;
+            Examples exampleForm = new Examples(new SpecialObject(bmp,txtbxPoints.Text,numberOfPoints,title,isRandom),waitForResponse);
+            HandleGameStateChange(false);
+            exampleForm.Show();
+            txtbxTitle.Text = "";
+        }
+
         #endregion
-
-
     }
     public static class StringExtensionCLass
     {

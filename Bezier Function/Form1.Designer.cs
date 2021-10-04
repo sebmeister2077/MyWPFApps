@@ -39,7 +39,6 @@ namespace Bezier_Function
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.chkbxVisibility = new System.Windows.Forms.CheckBox();
             this.chckStopClear = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.dragPanel = new System.Windows.Forms.Panel();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -48,6 +47,10 @@ namespace Bezier_Function
             this.label4 = new System.Windows.Forms.Label();
             this.txtbxSmoothness = new System.Windows.Forms.TextBox();
             this.btnCreateRandom = new System.Windows.Forms.Button();
+            this.btnExamples = new System.Windows.Forms.Button();
+            this.btnSaveState = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtbxTitle = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.dragPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -69,17 +72,17 @@ namespace Bezier_Function
             // 
             this.txtbxNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
             this.txtbxNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtbxNumber.Location = new System.Drawing.Point(902, 72);
+            this.txtbxNumber.Location = new System.Drawing.Point(992, 51);
             this.txtbxNumber.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtbxNumber.Name = "txtbxNumber";
-            this.txtbxNumber.Size = new System.Drawing.Size(125, 20);
+            this.txtbxNumber.Size = new System.Drawing.Size(41, 20);
             this.txtbxNumber.TabIndex = 1;
             this.txtbxNumber.TextChanged += new System.EventHandler(this.txtbxNumber_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(899, 46);
+            this.label1.Location = new System.Drawing.Point(875, 58);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 13);
@@ -90,10 +93,10 @@ namespace Bezier_Function
             // 
             this.txtbxPoints.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
             this.txtbxPoints.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtbxPoints.Location = new System.Drawing.Point(902, 160);
+            this.txtbxPoints.Location = new System.Drawing.Point(878, 102);
             this.txtbxPoints.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtbxPoints.Name = "txtbxPoints";
-            this.txtbxPoints.Size = new System.Drawing.Size(125, 96);
+            this.txtbxPoints.Size = new System.Drawing.Size(154, 96);
             this.txtbxPoints.TabIndex = 3;
             this.txtbxPoints.Text = "";
             this.txtbxPoints.TextChanged += new System.EventHandler(this.txtbxPoints_TextChanged);
@@ -101,7 +104,7 @@ namespace Bezier_Function
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(899, 143);
+            this.label2.Location = new System.Drawing.Point(879, 85);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
@@ -115,11 +118,11 @@ namespace Bezier_Function
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.LawnGreen;
-            this.button1.Location = new System.Drawing.Point(902, 262);
+            this.button1.Location = new System.Drawing.Point(878, 206);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.button1.Name = "button1";
             this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(125, 35);
+            this.button1.Size = new System.Drawing.Size(154, 35);
             this.button1.TabIndex = 5;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = false;
@@ -142,7 +145,7 @@ namespace Bezier_Function
             // 
             this.chkbxVisibility.AutoSize = true;
             this.chkbxVisibility.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.chkbxVisibility.Location = new System.Drawing.Point(902, 313);
+            this.chkbxVisibility.Location = new System.Drawing.Point(878, 249);
             this.chkbxVisibility.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.chkbxVisibility.Name = "chkbxVisibility";
             this.chkbxVisibility.Size = new System.Drawing.Size(100, 17);
@@ -155,7 +158,7 @@ namespace Bezier_Function
             // 
             this.chckStopClear.AutoSize = true;
             this.chckStopClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.chckStopClear.Location = new System.Drawing.Point(902, 338);
+            this.chckStopClear.Location = new System.Drawing.Point(879, 274);
             this.chckStopClear.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.chckStopClear.Name = "chckStopClear";
             this.chckStopClear.Size = new System.Drawing.Size(102, 17);
@@ -163,16 +166,6 @@ namespace Bezier_Function
             this.chckStopClear.Text = "Se All per ΔTime";
             this.chckStopClear.UseVisualStyleBackColor = true;
             this.chckStopClear.CheckedChanged += new System.EventHandler(this.chckStopClear_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(899, 95);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(137, 26);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Enter number of points and \r\nthen click on canvas\r\n";
             // 
             // dragPanel
             // 
@@ -229,7 +222,7 @@ namespace Bezier_Function
             this.chckDragMode.AutoSize = true;
             this.chckDragMode.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.chckDragMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chckDragMode.Location = new System.Drawing.Point(902, 518);
+            this.chckDragMode.Location = new System.Drawing.Point(878, 547);
             this.chckDragMode.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.chckDragMode.Name = "chckDragMode";
             this.chckDragMode.Size = new System.Drawing.Size(147, 17);
@@ -241,7 +234,7 @@ namespace Bezier_Function
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(899, 361);
+            this.label4.Location = new System.Drawing.Point(879, 295);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(146, 26);
             this.label4.TabIndex = 13;
@@ -251,10 +244,10 @@ namespace Bezier_Function
             // 
             this.txtbxSmoothness.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
             this.txtbxSmoothness.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtbxSmoothness.Location = new System.Drawing.Point(905, 391);
+            this.txtbxSmoothness.Location = new System.Drawing.Point(879, 325);
             this.txtbxSmoothness.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtbxSmoothness.Name = "txtbxSmoothness";
-            this.txtbxSmoothness.Size = new System.Drawing.Size(122, 20);
+            this.txtbxSmoothness.Size = new System.Drawing.Size(154, 20);
             this.txtbxSmoothness.TabIndex = 14;
             this.txtbxSmoothness.Text = "100";
             this.txtbxSmoothness.TextChanged += new System.EventHandler(this.txtbxSmoothness_TextChanged);
@@ -266,15 +259,69 @@ namespace Bezier_Function
             this.btnCreateRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateRandom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateRandom.ForeColor = System.Drawing.Color.Beige;
-            this.btnCreateRandom.Location = new System.Drawing.Point(902, 419);
+            this.btnCreateRandom.Location = new System.Drawing.Point(878, 353);
             this.btnCreateRandom.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnCreateRandom.Name = "btnCreateRandom";
             this.btnCreateRandom.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnCreateRandom.Size = new System.Drawing.Size(125, 49);
+            this.btnCreateRandom.Size = new System.Drawing.Size(154, 49);
             this.btnCreateRandom.TabIndex = 15;
             this.btnCreateRandom.Text = "Create Random Points";
             this.btnCreateRandom.UseVisualStyleBackColor = false;
             this.btnCreateRandom.Click += new System.EventHandler(this.btnCreateRandom_Click);
+            // 
+            // btnExamples
+            // 
+            this.btnExamples.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.btnExamples.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.btnExamples.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExamples.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExamples.ForeColor = System.Drawing.Color.Cornsilk;
+            this.btnExamples.Location = new System.Drawing.Point(878, 410);
+            this.btnExamples.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnExamples.Name = "btnExamples";
+            this.btnExamples.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnExamples.Size = new System.Drawing.Size(154, 28);
+            this.btnExamples.TabIndex = 16;
+            this.btnExamples.Text = "See Examples";
+            this.btnExamples.UseVisualStyleBackColor = false;
+            this.btnExamples.Click += new System.EventHandler(this.btnExamples_Click);
+            // 
+            // btnSaveState
+            // 
+            this.btnSaveState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.btnSaveState.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.btnSaveState.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveState.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveState.ForeColor = System.Drawing.Color.Cornsilk;
+            this.btnSaveState.Location = new System.Drawing.Point(879, 479);
+            this.btnSaveState.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnSaveState.Name = "btnSaveState";
+            this.btnSaveState.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnSaveState.Size = new System.Drawing.Size(154, 28);
+            this.btnSaveState.TabIndex = 17;
+            this.btnSaveState.Text = "Save Current";
+            this.btnSaveState.UseVisualStyleBackColor = false;
+            this.btnSaveState.Click += new System.EventHandler(this.btnSaveState_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(876, 453);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Save As:";
+            // 
+            // txtbxTitle
+            // 
+            this.txtbxTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.txtbxTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtbxTitle.Location = new System.Drawing.Point(930, 451);
+            this.txtbxTitle.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.txtbxTitle.Name = "txtbxTitle";
+            this.txtbxTitle.Size = new System.Drawing.Size(102, 20);
+            this.txtbxTitle.TabIndex = 19;
             // 
             // Form1
             // 
@@ -282,12 +329,15 @@ namespace Bezier_Function
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1056, 594);
+            this.Controls.Add(this.txtbxTitle);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnSaveState);
+            this.Controls.Add(this.btnExamples);
             this.Controls.Add(this.btnCreateRandom);
             this.Controls.Add(this.txtbxSmoothness);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.chckDragMode);
             this.Controls.Add(this.dragPanel);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.chckStopClear);
             this.Controls.Add(this.chkbxVisibility);
             this.Controls.Add(this.linkLabel1);
@@ -326,7 +376,6 @@ namespace Bezier_Function
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.CheckBox chkbxVisibility;
         private System.Windows.Forms.CheckBox chckStopClear;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel dragPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnClose;
@@ -335,6 +384,10 @@ namespace Bezier_Function
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtbxSmoothness;
         private System.Windows.Forms.Button btnCreateRandom;
+        private System.Windows.Forms.Button btnExamples;
+        private System.Windows.Forms.Button btnSaveState;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtbxTitle;
     }
 }
 

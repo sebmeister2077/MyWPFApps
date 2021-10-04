@@ -55,8 +55,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Examples.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Examples.Designer.cs">
+      <DependentUpon>Examples.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecialObject.cs" />
+    <EmbeddedResource Include="Examples.resx">
+      <DependentUpon>Examples.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\Gator.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
