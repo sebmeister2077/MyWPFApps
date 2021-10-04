@@ -5,10 +5,12 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Shapes;
 
 namespace Bezier_Function
 {
@@ -18,12 +20,18 @@ namespace Bezier_Function
         {
             InitializeComponent();
         }
+        private const int WM_APPCOMMAND = 0x319;
+        private const int APPCOMMAND_VOLUME_UP = 0xA0000;
+        private const int APPCOMMAND_VOLUME_DOWN = 0x90000;
+        System.Media.SoundPlayer player;
+
         static Size formSize = new Size(1025, 600);
         static bool drawExtras = false;
         static bool dontClear = false;
         static bool crazyMode = false;
         static Point mouseBefore;
         static bool pointMoved = false;
+        static Random rnd = new Random();
 
         static Timer timer;
         static Graphics grps;
@@ -46,6 +54,8 @@ namespace Bezier_Function
             bmp = new Bitmap(canvas.Width, canvas.Height);
             grps = Graphics.FromImage(bmp);
             mouseBefore = new Point(0, 0);
+
+            player = new System.Media.SoundPlayer();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -114,7 +124,8 @@ namespace Bezier_Function
             for (int i = 0; i < givenPoints.Length - 1; i++)
                 bezierPoints[i] = BezierPoint(givenPoints[i], givenPoints[i + 1], percentage);
 
-            SolidBrush brush = new SolidBrush(Color.FromArgb((int)(255 - 250 * ((double)level / points.Count)), 159, 159, 159));
+            double difference = (double)level / points.Count;
+            SolidBrush brush = new SolidBrush(Color.FromArgb((int)(255 - 256 * difference), 159, 159, 159 + (int)(difference * 90)));
             if(drawExtras)
             DrawPointsAndLines(bezierPoints,brush, Pens.White);
 
@@ -202,7 +213,36 @@ namespace Bezier_Function
             txtbxPoints.Text = bobTheBuilder.ToString();
         }
 
+        float triangleArea(Point p1, Point p2, Point p3) => Math.Abs(((float)p1.X * (p2.Y - p3.Y) + p2.X * (p3.Y - p1.Y) + p3.X * (p1.Y - p2.Y)) / 2);
 
+        bool IsInsideTriangle(Point p1, Point p2, Point p3, Point p)
+        {   
+            float area = triangleArea(p1, p2, p3);         
+            float area1 = triangleArea(p, p2, p3);
+            float area2 = triangleArea(p1, p, p3);      
+            float area3 = triangleArea(p1, p2, p);      
+
+            return (area == area1 + area2 + area3);        
+        }
+
+        private double CalculateAlpha(Point p,Point staticPoint)
+        {
+            if (p.X > staticPoint.X && p.Y >= staticPoint.Y)
+                return Math.Atan(p.X / p.Y);
+            if (p.X > staticPoint.X && p.Y < staticPoint.Y)
+                return Math.Atan(p.X / p.Y) + 2 * Math.PI;
+            if (p.X < staticPoint.X)
+                return Math.Atan(p.X / p.Y) + Math.PI;
+            if (p.X == staticPoint.X && p.Y > staticPoint.Y)
+                return Math.PI / 2;
+            if (p.X > staticPoint.X && p.Y < staticPoint.Y)
+                return 3 / 2 * Math.PI;
+            return 0;
+        }
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr SendMessageW(IntPtr hWnd, int Msg,
+            IntPtr wParam, IntPtr lParam);
         #endregion
 
         #region ExtraEvents
@@ -213,7 +253,23 @@ namespace Bezier_Function
 
         private void chkbxVisibility_CheckedChanged(object sender, EventArgs e) => drawExtras = chkbxVisibility.Checked;
 
-        private void chckDragMode_CheckedChanged(object sender, EventArgs e) => crazyMode = !crazyMode;
+        private void chckDragMode_CheckedChanged(object sender, EventArgs e)
+        {
+            crazyMode = !crazyMode;
+            player.Stop();
+            if (crazyMode)
+            {
+                string basePath = Application.StartupPath.Substring(0, Application.StartupPath.Length - 9);
+                player.SoundLocation =  basePath + @"Sounds\Gator.wav";
+                for(int i=0;i<50;i++)
+                    SendMessageW(this.Handle, WM_APPCOMMAND, this.Handle, (IntPtr)APPCOMMAND_VOLUME_DOWN);
+                SendMessageW(this.Handle, WM_APPCOMMAND, this.Handle, (IntPtr)APPCOMMAND_VOLUME_UP);
+                SendMessageW(this.Handle, WM_APPCOMMAND, this.Handle, (IntPtr)APPCOMMAND_VOLUME_UP);
+                SendMessageW(this.Handle, WM_APPCOMMAND, this.Handle, (IntPtr)APPCOMMAND_VOLUME_UP);
+                
+                player.Play();
+            }
+        }
 
         private void chckStopClear_CheckedChanged(object sender, EventArgs e) => dontClear = !dontClear;
 
@@ -276,7 +332,48 @@ namespace Bezier_Function
                 
             }
         }
+
+        private void btnCreateRandom_Click(object sender, EventArgs e)
+        {
+            ResetVars();
+            List<Point> finalList = new List<Point>();
+            for (int i = 0; i < numberOfPoints; i++)
+                points.Add(new Point(rnd.Next(2, canvas.Width - 2), rnd.Next(2, canvas.Height - 2)));
+            if (numberOfPoints <= 3 || numberOfPoints > 10) 
+                return;
+            for (int i = 0; i < points.Count; i++)
+                for (int j = 0; j < points.Count - 2; j++)
+                    if (j != i)
+                        for (int k = j + 1; k < points.Count - 1; k++)
+                            if (k != j && k != i)
+                                for (int l = k + 1; l < points.Count; l++)
+                                    if (l != k && l != j && l != i)
+                                        if (!IsInsideTriangle(points[l], points[k], points[j], points[i]))
+                                            finalList.Add(new Point(points[i].X, points[i].Y));
+            
+            int centerX = 0;
+            int centerY = 0;
+            foreach(Point p in finalList)
+            {
+                centerX += p.X;
+                centerY += p.Y;
+            }
+            Point center = new Point(centerX / finalList.Count, centerY / finalList.Count);
+            finalList.Sort(delegate(Point x,Point y) 
+            {
+                double xAlpha = CalculateAlpha(x, center);
+                double yAlpha = CalculateAlpha(y, center);
+                if (xAlpha > yAlpha)
+                    return 1;
+                if (yAlpha > xAlpha)
+                    return -1;
+                return 0;
+            });
+            points = new List<Point>(finalList);
+        }
         #endregion
+
+
     }
     public static class StringExtensionCLass
     {
