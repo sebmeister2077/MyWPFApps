@@ -24,6 +24,7 @@ namespace Bezier_Function
         private const int WM_APPCOMMAND = 0x319;
         private const int APPCOMMAND_VOLUME_UP = 0xA0000;
         private const int APPCOMMAND_VOLUME_DOWN = 0x90000;
+        private const string FILE_TYPE = ".xml";
         private string basePath;
         System.Media.SoundPlayer player;
         private delegate void Callback(SpecialObject obj);
@@ -33,6 +34,7 @@ namespace Bezier_Function
         static bool crazyMode = false;
         static Point mouseBefore;
         static bool pointMoved = false;
+        static bool pointAdded = false;
         static Random rnd = new Random();
         static int hash = 0;
 
@@ -60,8 +62,8 @@ namespace Bezier_Function
 
             basePath = Application.StartupPath.Substring(0, Application.StartupPath.Length - 9);
             player = new System.Media.SoundPlayer();
-            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
-            ToolTip1.SetToolTip(label1, "Enter number of points and then click on canvas");
+            ToolTip ToolTip1 = new ToolTip();
+            ToolTip1.SetToolTip(lblNumberOfPoints, "Enter number of points and then click on canvas");
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -104,20 +106,21 @@ namespace Bezier_Function
             grps.Clear(canvas.BackColor);
         }
 
-        private int ReturnRange(double number, double min, double max) => (int)Math.Max(Math.Min(number, max), min);
 
         private void HandleGameStateChange(bool? value = null)
         {
             if (value != null)
                 gameState = (bool)!value;
-            button1.Text = gameState ? "Start" : "Stop";
-            button1.ForeColor = gameState ? Color.LawnGreen: Color.Red;
+            btnGameState.Text = gameState ? "Start" : "Stop";
+            btnGameState.ForeColor = gameState ? Color.LawnGreen: Color.Red;
             gameState = !gameState;
             if (gameState)
                 timer.Start();
             else
                 timer.Stop();
         }
+
+        #region Math
 
         private Point BezierFunction(Point[] givenPoints,double percentage,int level=1)
         {
@@ -141,40 +144,46 @@ namespace Bezier_Function
         private Point BezierPoint(Point pointA,Point pointB,double percentage) => 
             new Point((int)((1 - percentage) * pointA.X + percentage * pointB.X), (int)((1 - percentage) * pointA.Y + percentage * pointB.Y));
 
+        private int ReturnRange(double number, double min, double max) => (int)Math.Max(Math.Min(number, max), min);
+
         private double Distance(Point p1, Point p2) => Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
         
         private bool IsOutsideOfCanvas(Point p) => p.X < 1 || p.Y < 1 || p.X > canvas.Width || p.Y > canvas.Height;
+        #endregion
 
         #endregion
 
         #region RequiredEvents
-        private void button1_Click(object sender, EventArgs e)
-        {
-            HandleGameStateChange();
-        }
+        private void btnGameState_Click(object sender, EventArgs e) => HandleGameStateChange();
 
         private void txtbxPoints_TextChanged(object sender, EventArgs e)
         {
             string text = txtbxPoints.Text;
             string[] lines = text.Split('\n');
-            Regex reg = new Regex(@"\([0-9]+,[0-9]+\)");
-            MatchCollection matches = reg.Matches(text);
+            Regex regLine = new Regex(@"^\([0-9]+,[0-9]+\)$");
+            int pointsFound = 0;
+            foreach (string line in lines)
+                pointsFound += regLine.Match(line).Success ? 1 : 0;
 
 
-            bool resetVars = !pointMoved && matches.Count != numberOfPoints;
+            bool resetVars = !pointMoved && !pointAdded;
             if (resetVars)
                 ResetVars();
 
-            
-
             alreadyReset = true;
-            txtbxNumber.Text = matches.Count.ToString();
-            numberOfPoints = matches.Count;
+            txtbxNumber.Text = pointsFound.ToString();
+            numberOfPoints = pointsFound;
             if (resetVars)
             foreach (string line in lines)
-                if (reg.Match(line).Success)
+                if (regLine.Match(line).Success)
                     points.Add(line.StringToPoint());
             pointMoved = false;
+            pointAdded = false;
+
+            if (Math.Max(lines.Length - 1, 0) != pointsFound) 
+                ShowWarningMessage();
+            else
+                ShowWarningMessage(false);
         }
 
         private void txtbxNumber_TextChanged(object sender, EventArgs e)
@@ -205,6 +214,7 @@ namespace Bezier_Function
             {
                 MouseEventArgs mouseE = (MouseEventArgs)e;
                 points.Add(mouseE.Location);
+                pointAdded = true;
             }
             if (points.Count == numberOfPoints)
                 WritePointsInText();
@@ -213,11 +223,13 @@ namespace Bezier_Function
 
         #region ExtraFunctions
 
+        public string PointToString(Point p) => "(" + p.X.ToString() + "," + p.Y.ToString() + ")";
+
         private void WritePointsInText()
         {
             StringBuilder bobTheBuilder = new StringBuilder();
             foreach (Point p in points)
-                bobTheBuilder.AppendLine("(" + p.X.ToString() + "," + p.Y.ToString() + ")");
+                bobTheBuilder.AppendLine(PointToString(p));
             txtbxPoints.Text = bobTheBuilder.ToString();
         }
 
@@ -226,6 +238,7 @@ namespace Bezier_Function
             ResetVars();
             Point[] pointArr = new Point[numberOfPoints];
             pointArr[0] = new Point(rnd.Next(2, canvas.Width - 2), rnd.Next(2, canvas.Height - 2));
+            const int multiplier = 3;
             const int amplitude = 100;
             const int offset = 70;
             for (int i = 1; i < numberOfPoints; i++)
@@ -234,8 +247,8 @@ namespace Bezier_Function
                 double y = pointArr[i - 1].Y;
                 double w = canvas.Width;
                 double h = canvas.Height;
-                pointArr[i] = new Point(ReturnRange(rnd.Next((int)(x - (amplitude * Math.Log10(x) - offset)), (int)(x + (amplitude * Math.Log10(-x + w) - offset))), 5, w - 5),
-                    ReturnRange(rnd.Next((int)(y - (amplitude * Math.Log10(y) - offset)), (int)(y + (amplitude * Math.Log10(-y + h) - offset))), 5, h - 5)); 
+                pointArr[i] = new Point(ReturnRange(rnd.Next((int)(x - multiplier * (amplitude * Math.Log10(x) - offset)), (int)(x + multiplier * (amplitude * Math.Log10(-x + w) - offset))), 5, w - 5),
+                    ReturnRange(rnd.Next((int)(y - multiplier * (amplitude * Math.Log10(y) - offset)), (int)(y + multiplier * (amplitude * Math.Log10(-y + h) - offset))), 5, h - 5));
             }
             points = pointArr.ToList();
             hash = points.GetHashCode();
@@ -263,9 +276,23 @@ namespace Bezier_Function
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessageW(IntPtr hWnd, int Msg,
             IntPtr wParam, IntPtr lParam);
+
+
+        #region OnComponents
+        private void ShowWarningMessage(bool value = true)
+        {
+            if (value)
+                labelPointsError.Text = "Invalid points.";
+            else
+                labelPointsError.Text = "";
+        }
+
+        #endregion
+
         #endregion
 
         #region ExtraEvents
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("chrome.exe", "https://www.youtube.com/watch?v=pnYccz1Ha34");
@@ -348,6 +375,7 @@ namespace Bezier_Function
                     points[index] = newPoint;
                     pointMoved = true;
                     WritePointsInText();
+                    pointMoved = true;
                 }
             }
         }
@@ -356,6 +384,7 @@ namespace Bezier_Function
         {
             ResetVars();
             CreateRandomPoints();
+            WritePointsInText();
         }
 
         private void btnExamples_Click(object sender, EventArgs e)
@@ -370,7 +399,12 @@ namespace Bezier_Function
         {
             string title = txtbxTitle.Text;
             string[] fileNames = Directory.GetFiles(basePath+ @"Data\");
-            if (fileNames.Contains(title + ".txt"))
+            if (title == "") 
+            {
+                MessageBox.Show("Empty Title");
+                return;
+            }
+            if (fileNames.Contains(title + FILE_TYPE))
             {
                 MessageBox.Show("This title is already token");
                 return;
@@ -384,6 +418,8 @@ namespace Bezier_Function
         }
 
         #endregion
+
+        
     }
     public static class StringExtensionCLass
     {

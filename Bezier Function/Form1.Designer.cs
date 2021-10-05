@@ -32,10 +32,10 @@ namespace Bezier_Function
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.canvas = new System.Windows.Forms.PictureBox();
             this.txtbxNumber = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNumberOfPoints = new System.Windows.Forms.Label();
             this.txtbxPoints = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblPoints = new System.Windows.Forms.Label();
+            this.btnGameState = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.chkbxVisibility = new System.Windows.Forms.CheckBox();
             this.chckStopClear = new System.Windows.Forms.CheckBox();
@@ -49,8 +49,9 @@ namespace Bezier_Function
             this.btnCreateRandom = new System.Windows.Forms.Button();
             this.btnExamples = new System.Windows.Forms.Button();
             this.btnSaveState = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblSaveAs = new System.Windows.Forms.Label();
             this.txtbxTitle = new System.Windows.Forms.TextBox();
+            this.labelPointsError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.dragPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,15 +80,15 @@ namespace Bezier_Function
             this.txtbxNumber.TabIndex = 1;
             this.txtbxNumber.TextChanged += new System.EventHandler(this.txtbxNumber_TextChanged);
             // 
-            // label1
+            // lblNumberOfPoints
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(875, 58);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Number Of Points";
+            this.lblNumberOfPoints.AutoSize = true;
+            this.lblNumberOfPoints.Location = new System.Drawing.Point(875, 58);
+            this.lblNumberOfPoints.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNumberOfPoints.Name = "lblNumberOfPoints";
+            this.lblNumberOfPoints.Size = new System.Drawing.Size(90, 13);
+            this.lblNumberOfPoints.TabIndex = 2;
+            this.lblNumberOfPoints.Text = "Number Of Points";
             // 
             // txtbxPoints
             // 
@@ -101,32 +102,32 @@ namespace Bezier_Function
             this.txtbxPoints.Text = "";
             this.txtbxPoints.TextChanged += new System.EventHandler(this.txtbxPoints_TextChanged);
             // 
-            // label2
+            // lblPoints
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(879, 85);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Points (x,y)";
+            this.lblPoints.AutoSize = true;
+            this.lblPoints.Location = new System.Drawing.Point(879, 85);
+            this.lblPoints.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPoints.Name = "lblPoints";
+            this.lblPoints.Size = new System.Drawing.Size(58, 13);
+            this.lblPoints.TabIndex = 4;
+            this.lblPoints.Text = "Points (x,y)";
             // 
-            // button1
+            // btnGameState
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.LawnGreen;
-            this.button1.Location = new System.Drawing.Point(878, 206);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.button1.Name = "button1";
-            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(154, 35);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnGameState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.btnGameState.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(111)))), ((int)(((byte)(163)))));
+            this.btnGameState.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGameState.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGameState.ForeColor = System.Drawing.Color.LawnGreen;
+            this.btnGameState.Location = new System.Drawing.Point(878, 206);
+            this.btnGameState.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnGameState.Name = "btnGameState";
+            this.btnGameState.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnGameState.Size = new System.Drawing.Size(154, 35);
+            this.btnGameState.TabIndex = 5;
+            this.btnGameState.Text = "Start";
+            this.btnGameState.UseVisualStyleBackColor = false;
+            this.btnGameState.Click += new System.EventHandler(this.btnGameState_Click);
             // 
             // linkLabel1
             // 
@@ -303,15 +304,15 @@ namespace Bezier_Function
             this.btnSaveState.UseVisualStyleBackColor = false;
             this.btnSaveState.Click += new System.EventHandler(this.btnSaveState_Click);
             // 
-            // label3
+            // lblSaveAs
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(876, 453);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 13);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "Save As:";
+            this.lblSaveAs.AutoSize = true;
+            this.lblSaveAs.Location = new System.Drawing.Point(876, 453);
+            this.lblSaveAs.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSaveAs.Name = "lblSaveAs";
+            this.lblSaveAs.Size = new System.Drawing.Size(50, 13);
+            this.lblSaveAs.TabIndex = 18;
+            this.lblSaveAs.Text = "Save As:";
             // 
             // txtbxTitle
             // 
@@ -323,14 +324,25 @@ namespace Bezier_Function
             this.txtbxTitle.Size = new System.Drawing.Size(102, 20);
             this.txtbxTitle.TabIndex = 19;
             // 
+            // labelPointsError
+            // 
+            this.labelPointsError.AutoSize = true;
+            this.labelPointsError.ForeColor = System.Drawing.Color.Red;
+            this.labelPointsError.Location = new System.Drawing.Point(941, 85);
+            this.labelPointsError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelPointsError.Name = "labelPointsError";
+            this.labelPointsError.Size = new System.Drawing.Size(0, 13);
+            this.labelPointsError.TabIndex = 20;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1056, 594);
+            this.Controls.Add(this.labelPointsError);
             this.Controls.Add(this.txtbxTitle);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblSaveAs);
             this.Controls.Add(this.btnSaveState);
             this.Controls.Add(this.btnExamples);
             this.Controls.Add(this.btnCreateRandom);
@@ -341,10 +353,10 @@ namespace Bezier_Function
             this.Controls.Add(this.chckStopClear);
             this.Controls.Add(this.chkbxVisibility);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnGameState);
+            this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.txtbxPoints);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblNumberOfPoints);
             this.Controls.Add(this.txtbxNumber);
             this.Controls.Add(this.canvas);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -369,10 +381,10 @@ namespace Bezier_Function
 
         private System.Windows.Forms.PictureBox canvas;
         private System.Windows.Forms.TextBox txtbxNumber;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNumberOfPoints;
         private System.Windows.Forms.RichTextBox txtbxPoints;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblPoints;
+        private System.Windows.Forms.Button btnGameState;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.CheckBox chkbxVisibility;
         private System.Windows.Forms.CheckBox chckStopClear;
@@ -386,8 +398,9 @@ namespace Bezier_Function
         private System.Windows.Forms.Button btnCreateRandom;
         private System.Windows.Forms.Button btnExamples;
         private System.Windows.Forms.Button btnSaveState;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblSaveAs;
         private System.Windows.Forms.TextBox txtbxTitle;
+        private System.Windows.Forms.Label labelPointsError;
     }
 }
 

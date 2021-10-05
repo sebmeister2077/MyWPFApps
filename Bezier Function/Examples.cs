@@ -19,7 +19,9 @@ namespace Bezier_Function
             Callback = callback;
         }
 
-        public Examples(SpecialObject savedArt,Delegate callback) : this(callback) => objReceived = new SpecialObject(savedArt);
+        public Examples(SpecialObject savedArt, Delegate callback) : this(callback) => objReceived = new SpecialObject(savedArt);
+
+        private const string FILE_TYPE = ".xml";
 
         private Delegate Callback;
         private SpecialObject objReceived;
@@ -30,22 +32,8 @@ namespace Bezier_Function
 
         private void Examples_Load(object sender, EventArgs e)
         {
-            if (objReceived != null && objReceived.Points.Length > 2) 
-            {
-                string finalPath = basePath + objReceived.Title + ".txt";
-                
-
-                File.Create(finalPath).Close();
-                TextWriter tw = new StreamWriter(finalPath);
-
-                tw.WriteLine(objReceived.Title);
-                tw.WriteLine(Convert.ToInt32(objReceived.IsRandom).ToString());
-                tw.WriteLine(objReceived.Count.ToString());
-                tw.WriteLine(objReceived.Points);
-                tw.WriteLine(ImageToString(new Bitmap(objReceived.Image)));
-                selected = objReceived.Title;
-                tw.Dispose();
-            }
+            if (objReceived != null && objReceived.Points.Length > 2)
+                SaveObject(objReceived);
             FetchObjects();
             RenderInitialData();
         }
@@ -86,6 +74,22 @@ namespace Bezier_Function
                 listBox.Items.Add(obj.Title);
                 listObjects.Add(obj);
             }
+        }
+
+        private void SaveObject(SpecialObject objReceived)
+        {
+            string finalPath = basePath + objReceived.Title + FILE_TYPE;
+
+            File.Create(finalPath).Close();
+            TextWriter tw = new StreamWriter(finalPath);
+
+            tw.WriteLine(objReceived.Title);
+            tw.WriteLine(Convert.ToInt32(objReceived.IsRandom).ToString());
+            tw.WriteLine(objReceived.Count.ToString());
+            tw.WriteLine(objReceived.Points);
+            tw.WriteLine(ImageToString(new Bitmap(objReceived.Image)));
+            selected = objReceived.Title;
+            tw.Dispose();
         }
         private string ImageToString(Bitmap bitmap)
         {
@@ -130,7 +134,7 @@ namespace Bezier_Function
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int index = listBox.SelectedIndex;
-            File.Delete(basePath + listObjects[index].Title + ".txt");
+            File.Delete(basePath + listObjects[index].Title + FILE_TYPE);
             listObjects.RemoveAt(index);
             listBox.Items.RemoveAt(index);
             InfoBoxChanged(null, "", null);
