@@ -154,7 +154,23 @@ namespace Bezier_Function
         #endregion
 
         #region RequiredEvents
-        private void btnGameState_Click(object sender, EventArgs e) => HandleGameStateChange();
+        private void btnGameState_Click(object sender, EventArgs e)
+        {
+            string text = txtbxSmoothness.Text;
+            Regex reg = new Regex(@"\D");
+            if (reg.Match(text).Success || text == "")
+            {
+                txtbxSmoothness.Text = maxPercentage.ToString();
+                return;
+            }
+            int numberParsed = int.Parse(txtbxSmoothness.Text);
+            maxPercentage = Math.Min(Math.Max(10, numberParsed), 1000);
+            txtbxSmoothness.Text = maxPercentage.ToString();
+            timer.Interval = maxPercentage / 10;
+            grps.Clear(canvas.BackColor);
+
+            HandleGameStateChange();
+        }
 
         private void txtbxPoints_TextChanged(object sender, EventArgs e)
         {
@@ -340,18 +356,8 @@ namespace Bezier_Function
 
         private void txtbxSmoothness_TextChanged(object sender, EventArgs e)
         {
-            string text = txtbxSmoothness.Text;
-            Regex reg = new Regex(@"\D");
-            if (reg.Match(text).Success || text == "")
-            {
-                txtbxSmoothness.Text = maxPercentage.ToString();
-                return;
-            }
-            int numberParsed = int.Parse(txtbxSmoothness.Text);
-            maxPercentage = Math.Min(Math.Max(10, numberParsed),1000);
-            txtbxSmoothness.Text = maxPercentage.ToString();
-            timer.Interval = maxPercentage / 10;
-            grps.Clear(canvas.BackColor);
+            HandleGameStateChange(false);
+            
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
