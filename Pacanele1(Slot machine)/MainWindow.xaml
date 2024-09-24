@@ -24,37 +24,37 @@
         <StackPanel Orientation="Horizontal">
             <Image x:Name="img1" Width="111" Height="150">
                 <Image.Source>
-                    <BitmapImage UriSource="C:/Users/Sebas/source/repos/Pacanele1(Slot machine)/Images/blank.jpg"/>
+                    <BitmapImage UriSource="./Images/blank.jpg"/>
                 </Image.Source>
             </Image>
             <Image x:Name="img2" Width="111" Height="150">
                 <Image.Source>
-                    <BitmapImage UriSource="C:/Users/Sebas/source/repos/Pacanele1(Slot machine)/Images/blank.jpg"/>
+                    <BitmapImage UriSource="./Images/blank.jpg"/>
                 </Image.Source>
             </Image>
             <Image x:Name="img3" Width="111" Height="150">
                 <Image.Source>
-                    <BitmapImage UriSource="C:/Users/Sebas/source/repos/Pacanele1(Slot machine)/Images/blank.jpg"/>
+                    <BitmapImage UriSource="./Images/blank.jpg"/>
                 </Image.Source>
             </Image>
             <Image x:Name="img4" Width="111" Height="150">
                 <Image.Source>
-                    <BitmapImage UriSource="C:/Users/Sebas/source/repos/Pacanele1(Slot machine)/Images/blank.jpg"/>
+                    <BitmapImage UriSource="./Images/blank.jpg"/>
                 </Image.Source>
             </Image>
             <Image x:Name="img5" Width="111" Height="150">
                 <Image.Source>
-                    <BitmapImage UriSource="C:/Users/Sebas/source/repos/Pacanele1(Slot machine)/Images/blank.jpg"/>
+                    <BitmapImage UriSource="./Images/blank.jpg"/>
                 </Image.Source>
             </Image>
             <Image x:Name="img6" Width="111" Height="150">
                 <Image.Source>
-                    <BitmapImage UriSource="C:/Users/Sebas/source/repos/Pacanele1(Slot machine)/Images/blank.jpg"/>
+                    <BitmapImage UriSource="./Images/blank.jpg"/>
                 </Image.Source>
             </Image>
             <Image x:Name="img7" Width="111" Height="150">
                 <Image.Source>
-                    <BitmapImage UriSource="C:/Users/Sebas/source/repos/Pacanele1(Slot machine)/Images/blank.jpg"/>
+                    <BitmapImage UriSource="./Images/blank.jpg"/>
                 </Image.Source>
             </Image>
         </StackPanel>
