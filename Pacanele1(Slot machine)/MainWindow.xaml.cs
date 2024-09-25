@@ -37,7 +37,7 @@ namespace Pacanele1_Slot_machine_
         private int diamonds;
         private int replaces;
         private int totalSpins;
-        private int[] retineImg= { 0,0,0,0,0,0,0,0,0,0,0,0,0};
+        private int[] retineImg = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         private int spent;
         private int multiplier;
         private int score;
@@ -50,7 +50,7 @@ namespace Pacanele1_Slot_machine_
             diamonds = 0;
             totalSpins = 0;
             if (freeSpins > 0)
-                spin.Content = "Free Spins"+freeSpins.ToString();
+                spin.Content = "Free Spins" + freeSpins.ToString();
             combbox.SelectedItem = combbox.Items[0];
             lblSC.Content = "10SC";
             spent = 10;
@@ -77,11 +77,11 @@ namespace Pacanele1_Slot_machine_
             this.Close();
         }
         #region Change ImgSource
-        public void Put(int poz,string path,string data)
+        public void Put(int poz, string path, string data)
         {
             switch (poz)
             {
-                
+
                 case 1:
                     img1.Source = GetImage(path);
                     img1.Tag = data;
@@ -117,77 +117,77 @@ namespace Pacanele1_Slot_machine_
         public void Spin(int pozitia)
         {
             int aux = rnd.Next();
-            if(aux%1137==0)
+            if (aux % 1137 == 0)
             {
                 //seven
                 retineImg[pozitia - 1] = 11;
-                Put(pozitia,"Images/seven.jpg","seven");
+                Put(pozitia, "Images/seven.jpg", "seven");
             }
             else
                 if (aux % 555 == 0)
             {
                 //die
                 retineImg[pozitia - 1] = 8;
-                Put(pozitia, "Images/die.jpg","die");
+                Put(pozitia, "Images/die.jpg", "die");
             }
             else
-                if(aux% 5149==0)
+                if (aux % 5149 == 0)
             {
                 //diamond
                 retineImg[pozitia - 1] = 7;
-                Put(pozitia, "Images/diamond.jpg","diamond");
+                Put(pozitia, "Images/diamond.jpg", "diamond");
             }
             else
-                if(aux%777==0)
+                if (aux % 777 == 0)
             {
                 //coins
                 retineImg[pozitia - 1] = 5;
-                Put(pozitia, "Images/coins.jpg","coins");
+                Put(pozitia, "Images/coins.jpg", "coins");
             }
             else
-                if(aux%22229==0)
+                if (aux % 22229 == 0)
             {
                 //horseshoe
                 retineImg[pozitia - 1] = 10;
-                Put(pozitia, "Images/horseshoe.jpg","horseshoe");
+                Put(pozitia, "Images/horseshoe.jpg", "horseshoe");
             }
             else
-                if(aux%13==0)
+                if (aux % 13 == 0)
             {
                 //bar
                 retineImg[pozitia - 1] = 1;
-                Put(pozitia, "Images/bar.jpg","bar");
+                Put(pozitia, "Images/bar.jpg", "bar");
             }
             else
-                if(aux%19==0)
+                if (aux % 19 == 0)
             {
                 //clover
                 retineImg[pozitia - 1] = 4;
-                Put(pozitia, "Images/clover.jpg","clover");
+                Put(pozitia, "Images/clover.jpg", "clover");
 
             }
             else
             {
                 //fructe
-                if(aux%3==0)
+                if (aux % 3 == 0)
                 {
                     retineImg[pozitia - 1] = 12;
-                    Put(pozitia, "Images/sourcherry.jpg","sourcherry");
+                    Put(pozitia, "Images/sourcherry.jpg", "sourcherry");
                 }
                 else
-                    if(aux%2==0)
+                    if (aux % 2 == 0)
                 {
-                    Put(pozitia, "Images/grapes.jpg","grapes");
+                    Put(pozitia, "Images/grapes.jpg", "grapes");
                     retineImg[pozitia - 1] = 9;
                 }
                 else
                 {
                     retineImg[pozitia - 1] = 13;
-                    Put(pozitia, "Images/strawberry.jpg","strawberry");
+                    Put(pozitia, "Images/strawberry.jpg", "strawberry");
                 }
             }
             if (pozitia < 7)
-                Spin(pozitia+1);
+                Spin(pozitia + 1);
         }
         #endregion
 
@@ -196,9 +196,9 @@ namespace Pacanele1_Slot_machine_
         {
             short sevens = 0, dies = 0, hshoes = 0, clovers = 0, bars = 0, fruit1 = 0, fruit2 = 0, fruit3 = 0, fruits = 0;
             bool oneOfAKindFruit = false;
-            for(int i=0;i<7;i++)
+            for (int i = 0; i < 7; i++)
             {
-                switch(retineImg[i])
+                switch (retineImg[i])
                 {
                     case 1:
                         bars++;
@@ -248,29 +248,29 @@ namespace Pacanele1_Slot_machine_
                         break;
                 }
             }
-            if(sevens==7)//wins jackpot
+            if (sevens == 7)//wins jackpot
             {
                 Hooray newWindow = new Hooray();
                 newWindow.Show();
                 score += 80000;
                 coins += 80000;
             }
-            if(hshoes==7||(hshoes+bars==7))
+            if (hshoes == 7 || (hshoes + bars == 7))
             {
                 replaces++;
                 lblreplace.Content = ":" + replaces + "(Replaces left)";
             }
-            if(dies==7||(clovers+bars==7))
+            if (dies == 7 || (clovers + bars == 7))
             {
                 freeSpins += 7;
                 spin.Content = "Free Spins:" + freeSpins.ToString();
             }
-            if(clovers==7||(clovers+bars==7))
+            if (clovers == 7 || (clovers + bars == 7))
             {
                 coins += 5000 * multiplier;
                 score += 5000;
             }
-            if(fruit1==7||(fruit1+bars==7))
+            if (fruit1 == 7 || (fruit1 + bars == 7))
             {
                 coins += 50 * multiplier;
                 score += 50;
@@ -288,7 +288,7 @@ namespace Pacanele1_Slot_machine_
                 score += 50;
                 oneOfAKindFruit = true;
             }
-            if (oneOfAKindFruit==false&&(fruits == 7 || (fruits + bars == 7)))
+            if (oneOfAKindFruit == false && (fruits == 7 || (fruits + bars == 7)))
             {
                 coins += 5 * multiplier;
                 score += 5;
@@ -307,7 +307,7 @@ namespace Pacanele1_Slot_machine_
             }
             else
             {
-                if(freeSpins>0)
+                if (freeSpins > 0)
                 {
                     freeSpins--;
                     spin.Content = "Free spins:" + freeSpins.ToString();
@@ -318,7 +318,7 @@ namespace Pacanele1_Slot_machine_
                 {
                     coins -= spent;
                 }
-                if(coins<0)//game over
+                if (coins < 0)//game over
                 {
                     GameOver();
                     gameStart = false;
@@ -330,7 +330,7 @@ namespace Pacanele1_Slot_machine_
                     CheckResults();
                 }
             }
-                
+
         }
 
         private void rewards_Click(object sender, RoutedEventArgs e)
