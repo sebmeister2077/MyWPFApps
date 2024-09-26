@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="10"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CellEditEnding="dataGrid_CellEditEnding" SelectionChanged="dataGrid_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" MinWidth="36" />
+
+                <DataGridTextColumn Header="Name" Binding="{Binding UserName}" MinWidth="200" />
+                <DataGridCheckBoxColumn Header="IsAdmin" Binding="{Binding IsAdmin}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

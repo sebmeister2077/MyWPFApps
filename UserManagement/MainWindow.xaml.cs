@@ -25,7 +25,8 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         //InsertData();
-        FetchData();
+        var users = FetchData();
+        dataGrid.ItemsSource = users;
     }
 
     private void InsertData()
@@ -43,39 +44,53 @@ public partial class MainWindow : Window
 
     }
 
-    private void FetchData()
+    private List<User> FetchData()
     {
         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
         using SqlConnection conn = new(connectionString);
 
         conn.Open();
 
-        string query = "SELECT * FROM Users";
+        string query = "SELECT [Id],[IsAdmin],[UserName] FROM Users";
         SqlCommand command = new(query, conn);
 
         SqlDataReader reader = command.ExecuteReader();
-        if (!reader.HasRows) return;
 
-        List<List<object>> values = new() { };
+        if (!reader.HasRows) return new List<User>();
+
+        List<User> users = new() { };
 
 
         while (reader.Read())
         {
 
-            List<object> rowValues = new() { };
-            for (int i = 0; i < reader.FieldCount; i++)
+            User user = new()
             {
-                object value = reader.GetValue(i);
-                Type dataType = reader.GetFieldType(i);
-                rowValues.Add(value);
-            }
-            values.Add(rowValues);
+                Id = reader.GetInt32(0),
+                IsAdmin = reader.GetBoolean(1),
+                UserName = reader.GetString(2),
+            };
+            users.Add(user);
         }
 
 
 
         reader.Close();
+        return users;
 
+    }
+
+    private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+    {
+        var element = e.EditingElement;
+        if (element is TextBox textBoxElement)
+        {
+
+        }
+    }
+
+    private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
 
     }
 }
