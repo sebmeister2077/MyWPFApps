@@ -24,9 +24,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        //InsertData();
-        var users = FetchData();
-        dataGrid.ItemsSource = users;
+        ///InsertData();
+        FetchAndShowUsers();
     }
 
     private void InsertData()
@@ -36,7 +35,7 @@ public partial class MainWindow : Window
 
         conn.Open();
 
-        string query = "INSERT INTO Users ([UserName],[IsAdmin],[Password]) VALUES('Sebas',1,'password')";
+        string query = "INSERT INTO Users ([UserName],[IsAdmin],[Password]) VALUES('Cioabi',0,'password1')";
         SqlCommand command = new(query, conn);
 
         command.ExecuteNonQuery();
@@ -44,7 +43,7 @@ public partial class MainWindow : Window
 
     }
 
-    private List<User> FetchData()
+    private void FetchAndShowUsers()
     {
         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
         using SqlConnection conn = new(connectionString);
@@ -56,7 +55,7 @@ public partial class MainWindow : Window
 
         SqlDataReader reader = command.ExecuteReader();
 
-        if (!reader.HasRows) return new List<User>();
+        if (!reader.HasRows) return;
 
         List<User> users = new() { };
 
@@ -76,8 +75,7 @@ public partial class MainWindow : Window
 
 
         reader.Close();
-        return users;
-
+        dataGrid.ItemsSource = users;
     }
 
     private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -91,6 +89,18 @@ public partial class MainWindow : Window
 
     private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (e.RemovedItems.Count == 0) return;
+        if (!(e.RemovedItems[0] is User editedUser)) return;
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
+        using SqlConnection conn = new(connectionString);
+
+        conn.Open();
+
+        int isAdminBit = editedUser.IsAdmin ? 1 : 0;
+        string query = $"UPDATE Users SET [IsAdmin]={isAdminBit},[UserName]='{editedUser.UserName}' WHERE [Id] = {editedUser.Id}";
+        SqlCommand command = new(query, conn);
+
+        command.ExecuteNonQuery();
 
     }
 }
