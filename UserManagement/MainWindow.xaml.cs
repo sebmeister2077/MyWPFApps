@@ -122,4 +122,40 @@ public partial class MainWindow : Window
         command.ExecuteNonQuery();
 
     }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        var newUserList = dataGrid.ItemsSource.Cast<User>().ToList();
+
+        User newUser = new()
+        {
+            IsAdmin = false,
+            UserName = "Anonym",
+        };
+
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
+        using SqlConnection conn = new(connectionString);
+
+        conn.Open();
+
+        int isAdminBit = newUser.IsAdmin ? 1 : 0;
+        string query = $"INSERT INTO Users ([IsAdmin],[UserName],[Password]) VALUES ({isAdminBit},'{newUser.UserName}','defaultpassword')";
+        SqlCommand command = new(query, conn);
+        command.ExecuteNonQuery();
+
+
+        string getIdQuery = "SELECT TOP(1) [Id] FROM Users ORDER BY [Id] DESC";
+
+        command = new(getIdQuery, conn);
+
+
+        SqlDataReader reader = command.ExecuteReader();
+
+        reader.Read();
+        newUser.Id = reader.GetInt32(0);
+
+        newUserList.Add(newUser);
+        dataGrid.ItemsSource = newUserList;
+
+    }
 }

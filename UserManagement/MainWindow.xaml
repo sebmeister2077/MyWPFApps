@@ -19,7 +19,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Padding="6" FontSize="20" Text="{Binding TotalUsers, StringFormat='User count: {0}'}"/>
-                <Button Grid.Column="2" MaxWidth="100" HorizontalContentAlignment="Center">
+                <Button Grid.Column="2" MaxWidth="100" HorizontalContentAlignment="Center" Click="Button_Click">
                     Add Entry
                 </Button>
             </Grid>
