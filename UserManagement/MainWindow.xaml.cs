@@ -21,11 +21,15 @@ namespace UserManagement;
 /// </summary>
 public partial class MainWindow : Window
 {
+
+    private MainViewModel _mainViewModel;
     public MainWindow()
     {
         InitializeComponent();
         ///InsertData();
         FetchAndShowUsers();
+        _mainViewModel = (MainViewModel)DataContext;
+        _mainViewModel.TotalUsers = FetchTotalUsers();
     }
 
     private void InsertData()
@@ -78,6 +82,20 @@ public partial class MainWindow : Window
         dataGrid.ItemsSource = users;
     }
 
+    private int FetchTotalUsers()
+    {
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
+        using SqlConnection conn = new(connectionString);
+        conn.Open();
+
+        string query = "SELECT COUNT([Id]) FROM Users";
+        SqlCommand command = new(query, conn);
+
+        SqlDataReader reader = command.ExecuteReader();
+        reader.Read();
+        return reader.GetInt32(0);
+    }
+
     private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
     {
         var element = e.EditingElement;
@@ -87,10 +105,11 @@ public partial class MainWindow : Window
         }
     }
 
+
     private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (e.RemovedItems.Count == 0) return;
-        if (!(e.RemovedItems[0] is User editedUser)) return;
+        if (e.RemovedItems[0] is not User editedUser) return;
         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
         using SqlConnection conn = new(connectionString);
 

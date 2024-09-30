@@ -3,11 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UserManagement"
+        xmlns:vm="clr-namespace:UserManagement"
         mc:Ignorable="d"
         Title="User Management" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
     <Grid>
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="10"
+        <TextBlock Padding="6" FontSize="20" Text="{Binding TotalUsers, StringFormat='User count: {0}'}"/>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="0 36 0 0"
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
                 CellEditEnding="dataGrid_CellEditEnding" SelectionChanged="dataGrid_SelectionChanged" >
