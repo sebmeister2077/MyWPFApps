@@ -10,18 +10,31 @@
         <vm:MainViewModel/>
     </Window.DataContext>
     <Grid>
-        <TextBlock Padding="6" FontSize="20" Text="{Binding TotalUsers, StringFormat='User count: {0}'}"/>
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="0 36 0 0"
+        <StackPanel Orientation="Vertical">
+            <Grid  Height="40"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="120" MaxWidth="180" />
+                    <ColumnDefinition  />
+                    <ColumnDefinition  Width="100" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Padding="6" FontSize="20" Text="{Binding TotalUsers, StringFormat='User count: {0}'}"/>
+                <Button Grid.Column="2" MaxWidth="100" HorizontalContentAlignment="Center">
+                    Add Entry
+                </Button>
+            </Grid>
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="0 0 0 0" Height="Auto"
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
                 CellEditEnding="dataGrid_CellEditEnding" SelectionChanged="dataGrid_SelectionChanged" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" MinWidth="36" />
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" MinWidth="36" />
 
-                <DataGridTextColumn Header="Name" Binding="{Binding UserName}" MinWidth="200" />
-                <DataGridCheckBoxColumn Header="IsAdmin" Binding="{Binding IsAdmin}" />
-            </DataGrid.Columns>
-        </DataGrid>
+                    <DataGridTextColumn Header="Name" Binding="{Binding UserName}" MinWidth="200" />
+                    <DataGridCheckBoxColumn Header="IsAdmin" Binding="{Binding IsAdmin}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
 
     </Grid>
 </Window>
